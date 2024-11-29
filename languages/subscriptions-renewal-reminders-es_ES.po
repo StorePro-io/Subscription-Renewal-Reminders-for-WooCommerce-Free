@@ -1,0 +1,447 @@
+# Copyright (C) 2024 StorePro
+# This file is distributed under the GNU General Public License v3.0.
+msgid ""
+msgstr ""
+"Project-Id-Version: Subscriptions Renewal Reminders 1.2.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/subscriptions-"
+"renewal-reminders\n"
+"POT-Creation-Date: 2024-11-16T06:55:58+00:00\n"
+"PO-Revision-Date: 2024-11-16 12:36+0530\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+"X-Domain: subscriptions-renewal-reminders\n"
+
+#. Plugin Name of the plugin
+#: subscriptions-renewal-reminders.php
+#: templates/renewal-reminders-admin.php:112
+msgid "Subscriptions Renewal Reminders"
+msgstr "Recordatorios de renovación de suscripciones"
+
+#. Plugin URI of the plugin
+#: subscriptions-renewal-reminders.php
+msgid "https://storepro.io/subscription-renewal-premium/"
+msgstr "https://storepro.io/subscription-renewal-premium/"
+
+#. Description of the plugin
+#: subscriptions-renewal-reminders.php
+msgid ""
+"Renewal Reminders for Subscriptions automatically send your subscribers a "
+"courtesy reminder via email X days before their subscription renews. "
+"Shortcodes to be used for updating the subscriber's First and Last Names are "
+"{first_name} and {last_name} respectively."
+msgstr ""
+"Los recordatorios de renovación de suscripciones envían automáticamente a "
+"sus suscriptores un recordatorio de cortesía por correo electrónico X días "
+"antes de que se renueve su suscripción. Los códigos cortos que se utilizarán "
+"para actualizar el nombre y apellido del suscriptor son {first_name} y "
+"{last_name} respectivamente."
+
+#. Author of the plugin
+#: subscriptions-renewal-reminders.php
+msgid "StorePro"
+msgstr "StorePro"
+
+#. Author URI of the plugin
+#: subscriptions-renewal-reminders.php
+msgid "https://storepro.io/"
+msgstr "https://storepro.io/"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:32
+msgid "Enable/Disable Renewal reminder Notifications!"
+msgstr "¡Activar/desactivar notificaciones de recordatorio de renovación!"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:71
+msgid "These are the days before the reminder is sent out"
+msgstr "Estos son los días previos al envío del recordatorio"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:95
+msgid "Time in UTC to send out the reminder notification"
+msgstr "Hora en UTC para enviar la notificación de recordatorio"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:129
+msgid "Add E-mail subject, content from here"
+msgstr "Agregue asunto de correo electrónico, contenido desde aquí"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:141
+msgid "Please add your Email subject"
+msgstr "Por favor agregue el asunto de su correo electrónico"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:161
+msgid "Available placeholders:{first_name},{last_name}, {next_payment_date}"
+msgstr ""
+"Marcadores de posición disponibles:{first_name},{last_name}, {next_paid_date}"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:190
+#: templates/renewal-reminders-admin.php:221
+msgid "Note:"
+msgstr "Nota:"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:192
+msgid "Save the settings to receive contents in the email."
+msgstr ""
+"Guarde la configuración para recibir contenidos en el correo electrónico."
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:193
+msgid ""
+"If you made any changes to existing subscriptions or plugin settings, "
+"remember to Sync."
+msgstr ""
+"Si realizó algún cambio en las suscripciones existentes o en la "
+"configuración de complementos, recuerde sincronizar."
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:200
+msgid "Available Shortcodes:"
+msgstr "Códigos cortos disponibles:"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:209
+msgid "{first_name}"
+msgstr "{nombre de pila}"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:209
+msgid "User’s First Name."
+msgstr "Nombre del usuario."
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:210
+msgid "{last_name}"
+msgstr "{apellido}"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:210
+msgid "User’s Last Name."
+msgstr "Apellido del usuario."
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:211
+msgid "{next_payment_date}"
+msgstr "{próxima fecha de pago}"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:211
+msgid "Next Payment Date."
+msgstr "Próxima fecha de pago."
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:212
+msgid "{cancel_subscription}"
+msgstr "{cancelar suscripción}"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:212
+msgid "Cancel Subscription Button."
+msgstr "Sincronizar datos de suscripción."
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:230
+msgid "Enable Subscription Cancel Button in Renewal Reminder Emails"
+msgstr "Recordatorios De Renovación De Suscripciones"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:234
+msgid "You can use the shortcode"
+msgstr "Puedes usar el código corto"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:234
+msgid "[subscription_cancel_button]"
+msgstr "[botón de cancelación de suscripción]"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:234
+msgid "to add the cancel button when editing the template."
+msgstr "para agregar el botón cancelar al editar la plantilla."
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:245
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:248
+msgid "Cancel Subscription"
+msgstr "Sincronizar datos de suscripción"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:250
+msgid "Change Subscription Cancel Button Text Here"
+msgstr "Cambiar el texto del botón Cancelar suscripción aquí"
+
+#: inc/api/renewal-reminders-settings-api.php:64
+#: inc/api/renewal-reminders-settings-api.php:65
+#: inc/base/renewal-reminders-settings-links.php:17
+#: templates/renewal-reminders-admin.php:260
+msgid "Settings"
+msgstr "Ajustes"
+
+#: inc/api/renewal-reminders-settings-api.php:72
+msgid "Upgrade"
+msgstr "Mejora"
+
+#: inc/api/renewal-reminders-settings-api.php:72
+msgid "Upgrade to Pro"
+msgstr "Actualízate a Pro"
+
+#: inc/pages/renewal-reminders-admin.php:44
+#: inc/pages/renewal-reminders-admin.php:45
+msgid "Renewal Reminders"
+msgstr "Recordatorios de renovación"
+
+#: inc/pages/renewal-reminders-admin.php:113
+msgid "Customise Notification Email"
+msgstr "Personalizar el correo electrónico de notificación"
+
+#: inc/pages/renewal-reminders-admin.php:128
+msgid "Enable notification Emails"
+msgstr "Habilitar correos electrónicos de notificación"
+
+#: inc/pages/renewal-reminders-admin.php:139
+msgid "Days Before Reminder Notification"
+msgstr "Días antes de la notificación del recordatorio"
+
+#: inc/pages/renewal-reminders-admin.php:150
+msgid "Time for sending Notification Email (in UTC)"
+msgstr "Hora de envío del correo electrónico de notificación (en UTC)"
+
+#: inc/pages/renewal-reminders-admin.php:163
+msgid "Email Subject"
+msgstr "Asunto del email"
+
+#: inc/pages/renewal-reminders-admin.php:174
+msgid "Email Content"
+msgstr "Contenido del correo electrónico"
+
+#: inc/pages/renewal-reminders-admin.php:186
+msgid "Enable Click To Cancel Button"
+msgstr "Habilitar el botón Hacer clic para cancelar"
+
+#: inc/pages/renewal-reminders-admin.php:198
+msgid "Cancel Button Text"
+msgstr "Texto del botón Cancelar"
+
+#: subscriptions-renewal-reminders.php:120
+msgid "Write Something Here!"
+msgstr "¡Escribe algo aquí!"
+
+#: subscriptions-renewal-reminders.php:124
+msgid "Renewal Reminders Subscription"
+msgstr "Suscripción de recordatorios de renovación"
+
+#: subscriptions-renewal-reminders.php:129
+msgid ""
+"Hi {first_name} {last_name}, \n"
+"        This is an email just to let you know, your subscription expires on "
+"{next_payment_date}! \n"
+"        You can avoid this if already renewed.\n"
+"        Thanks!"
+msgstr ""
+"Hola {primer_nombre} {apellido},\n"
+" ¡Este es un correo electrónico solo para informarle que su suscripción "
+"vence el {next_paid_date}!\n"
+" Puedes evitar esto si ya lo has renovado.\n"
+" ¡Gracias!"
+
+#: subscriptions-renewal-reminders.php:258
+#: templates/renewal-reminders-admin.php:292
+msgid "Upgrade to Pro Version Now"
+msgstr "Actualice a la versión Pro ahora"
+
+#: subscriptions-renewal-reminders.php:267
+msgid "Get Renewal Reminder Subscriptions Premium Pro Version!"
+msgstr "Suscripción de recordatorios de renovación!"
+
+#: templates/renewal-reminders-admin.php:131
+msgid "Dismiss this notice."
+msgstr "Descartar este aviso."
+
+#: templates/renewal-reminders-admin.php:138
+msgid ""
+"Discover the superpower of having your own development team on call for your "
+"website. We help online business like yours grow faster, experiment easier "
+"and solve technical challenges without the stress and wasted time."
+msgstr ""
+"Descubra el superpoder de contar con su propio equipo de desarrollo "
+"disponible para su sitio web. Ayudamos a empresas en línea como la suya a "
+"crecer más rápido, experimentar con mayor facilidad y resolver desafíos "
+"técnicos sin estrés ni pérdida de tiempo."
+
+#: templates/renewal-reminders-admin.php:143
+msgid "Get in touch today for a quick chat to see how we can help you."
+msgstr ""
+"Póngase en contacto con nosotros hoy para una charla rápida para ver cómo "
+"podemos ayudarlo."
+
+#: templates/renewal-reminders-admin.php:148
+msgid "Talk to Us"
+msgstr "Hable con nosotros"
+
+#: templates/renewal-reminders-admin.php:160
+msgid "settings"
+msgstr "ajustes"
+
+#: templates/renewal-reminders-admin.php:161
+msgid "Sync"
+msgstr "Sincronizar"
+
+#: templates/renewal-reminders-admin.php:187
+msgid ""
+"Synchronize Subscription data to Renewel Reminders Plugin Manually here!"
+msgstr ""
+"¡Sincronice los datos de suscripción con el complemento de recordatorio de "
+"renovación manualmente aquí!"
+
+#: templates/renewal-reminders-admin.php:192
+msgid "Manual Sync"
+msgstr "Sincronización manual"
+
+#: templates/renewal-reminders-admin.php:215
+msgid ""
+"Synchronize subscription data to Renewel Reminders Plugin for the first time "
+"here!"
+msgstr ""
+"¡Sincronice los datos de suscripción con el complemento Recordatorio de "
+"renovación por primera vez aquí!"
+
+#: templates/renewal-reminders-admin.php:218
+msgid "Synchronize Subscription data"
+msgstr "Sincronizar datos de suscripción"
+
+#: templates/renewal-reminders-admin.php:221
+msgid ""
+"You can access Settings Tab once, the data Synchronization is completed!"
+msgstr ""
+"Puede acceder a la pestaña Configuración una vez, ¡la sincronización de "
+"datos se completa!"
+
+#: templates/renewal-reminders-admin.php:252
+msgid ""
+"Get Renewal Reminders Premium and gain access to more features and shortcodes"
+msgstr ""
+"Obtenga Recordatorios de renovación Premium y obtenga acceso a más funciones "
+"y códigos cortos"
+
+#: templates/renewal-reminders-admin.php:253
+msgid "Improve the flexibility of reminder emails, get your license and"
+msgstr ""
+"Mejore la flexibilidad de los correos electrónicos de recordatorio, obtenga "
+"su licencia y"
+
+#: templates/renewal-reminders-admin.php:253
+msgid "Upgrade today"
+msgstr "Actualice hoy"
+
+#: templates/renewal-reminders-admin.php:253
+msgid " Make reminder mails much more flexible"
+msgstr "Haz que los correos de recordatorio sean mucho más flexibles"
+
+#: templates/renewal-reminders-admin.php:266
+msgid "Email Settings"
+msgstr "Ajustes del correo electrónico"
+
+#: templates/renewal-reminders-admin.php:272
+msgid "Test Email"
+msgstr "Email de prueba"
+
+#: templates/renewal-reminders-admin.php:278
+msgid "FAQ"
+msgstr "Preguntas más frecuentes"
+
+#: templates/renewal-reminders-admin.php:282
+msgid "PRO Features:"
+msgstr "Características PRO:"
+
+#: templates/renewal-reminders-admin.php:284
+msgid "Compatibility with synchronized subscriptions."
+msgstr "Compatibilidad con suscripciones sincronizadas."
+
+#: templates/renewal-reminders-admin.php:285
+msgid ""
+"The ability to choose the type of subscription period renewal reminder "
+"emails are sent to. This is useful for websites with mixed subscription "
+"periods, as you can avoid sending renewal reminders for subscriptions that "
+"don’t actually need them."
+msgstr ""
+"La posibilidad de elegir el tipo de correo electrónico de recordatorio de "
+"renovación del período de suscripción al que se envían. Esto es útil para "
+"sitios web con períodos de suscripción mixtos, ya que puede evitar enviar "
+"recordatorios de renovación para suscripciones que en realidad no los "
+"necesitan."
+
+#: templates/renewal-reminders-admin.php:286
+msgid ""
+"Renewal period can be chosen from the available options which is daily, "
+"weekly, monthly or yearly."
+msgstr ""
+"El período de renovación se puede elegir entre las opciones disponibles: "
+"diaria, semanal, mensual o anual."
+
+#: templates/renewal-reminders-admin.php:287
+msgid ""
+"The ability to change the from email address and the sender’s name for "
+"renewal reminder emails."
+msgstr ""
+"La capacidad de cambiar la dirección de correo electrónico y el nombre del "
+"remitente para los correos electrónicos de recordatorio de renovación."
+
+#: templates/renewal-reminders-admin.php:288
+msgid ""
+"Additional shortcodes are included for email templates, such as the total "
+"amount, subscription link, and my account link."
+msgstr ""
+"Se incluyen códigos cortos adicionales para las plantillas de correo "
+"electrónico, como el monto total, el enlace de suscripción y el enlace de mi "
+"cuenta."
+
+#: templates/renewal-reminders-admin.php:289
+msgid "An email test feature has been included."
+msgstr "Se ha incluido una función de prueba de correo electrónico."
+
+#: templates/renewal-reminders-admin.php:290
+msgid ""
+"Additional filters that allow you to expand the plugin’s functionality and "
+"customize email templates. You can also use these filters to modify the "
+"subscription period."
+msgstr ""
+"Filtros adicionales que le permiten ampliar la funcionalidad del complemento "
+"y personalizar las plantillas de correo electrónico. También puedes utilizar "
+"estos filtros para modificar el período de suscripción."
+
+#: templates/renewal-reminders-email.php:41
+msgid "Renewal Reminder"
+msgstr "Recordatorio de renovación"
+
+#~ msgid "Supercharge Your Store! %sExclusive Support Plans Now!"
+#~ msgstr "¡Recarga tu tienda! %s¡Planes de soporte exclusivos ahora!"
+
+#~ msgid "Explore Our"
+#~ msgstr "Explora nuestra"
+
+#~ msgid ""
+#~ "Discover the power of unparalleled assistance with our premium support "
+#~ "services. Elevate your business to new heights with our comprehensive "
+#~ "support solutions!"
+#~ msgstr ""
+#~ "Descubra el poder de una asistencia incomparable con nuestros servicios "
+#~ "de soporte premium. ¡Eleve su negocio a nuevas alturas con nuestras "
+#~ "soluciones integrales de soporte!"
+
+#~ msgid ""
+#~ "Maximize your WooCommerce experience with unlimited support and 24/7 "
+#~ "accessibility. Join our thriving community of successful online "
+#~ "businesses today!"
+#~ msgstr ""
+#~ "Maximice su experiencia WooCommerce con soporte ilimitado y accesibilidad "
+#~ "24 horas al día, 7 días a la semana. ¡Únase a nuestra próspera comunidad "
+#~ "de negocios en línea exitosos hoy!"
+
+#~ msgid "Dedicated"
+#~ msgstr "Dedicada"
+
+#~ msgid "Schedule Call"
+#~ msgstr "Programar llamada"
+
+#~ msgid "Managed"
+#~ msgstr "Administrada"
+
+#~ msgid "$ 579 /mo"
+#~ msgstr "$ 579 /mes"
+
+#~ msgid "Our Valuable Package"
+#~ msgstr "Nuestro valioso paquete"
+
+#~ msgid "Start $1 Trial"
+#~ msgstr "Iniciar prueba de $1"
+
+#~ msgid "Essentials"
+#~ msgstr "Esenciales"
+
+#~ msgid "$ 279 /mo"
+#~ msgstr "$ 279 /mes"

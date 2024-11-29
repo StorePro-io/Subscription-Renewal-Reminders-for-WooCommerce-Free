@@ -1,0 +1,412 @@
+# Copyright (C) 2024 StorePro
+# This file is distributed under the GNU General Public License v3.0.
+msgid ""
+msgstr ""
+"Project-Id-Version: Subscriptions Renewal Reminders 1.2.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/subscriptions-"
+"renewal-reminders\n"
+"POT-Creation-Date: 2024-11-16T06:55:58+00:00\n"
+"PO-Revision-Date: 2024-11-16 12:33+0530\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+"X-Domain: subscriptions-renewal-reminders\n"
+
+#. Plugin Name of the plugin
+#: subscriptions-renewal-reminders.php
+#: templates/renewal-reminders-admin.php:112
+msgid "Subscriptions Renewal Reminders"
+msgstr "订阅续订提醒"
+
+#. Plugin URI of the plugin
+#: subscriptions-renewal-reminders.php
+msgid "https://storepro.io/subscription-renewal-premium/"
+msgstr "https://storepro.io/subscription-renewal-premium/"
+
+#. Description of the plugin
+#: subscriptions-renewal-reminders.php
+msgid ""
+"Renewal Reminders for Subscriptions automatically send your subscribers a "
+"courtesy reminder via email X days before their subscription renews. "
+"Shortcodes to be used for updating the subscriber's First and Last Names are "
+"{first_name} and {last_name} respectively."
+msgstr ""
+"订阅续订提醒会在订阅续订前 X 天自动通过电子邮件向您的订阅者发送礼貌提醒。用于"
+"更新订阅者名字和姓氏的短代码分别为 {first_name} 和 {last_name}。"
+
+#. Author of the plugin
+#: subscriptions-renewal-reminders.php
+msgid "StorePro"
+msgstr "StorePro"
+
+#. Author URI of the plugin
+#: subscriptions-renewal-reminders.php
+msgid "https://storepro.io/"
+msgstr "https://storepro.io/"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:32
+msgid "Enable/Disable Renewal reminder Notifications!"
+msgstr "启用/禁用续订提醒通知！"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:71
+msgid "These are the days before the reminder is sent out"
+msgstr "这是提醒发出前的几天"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:95
+msgid "Time in UTC to send out the reminder notification"
+msgstr "发送提醒通知的 UTC 时间"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:129
+msgid "Add E-mail subject, content from here"
+msgstr "从这里添加电子邮件主题、内容"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:141
+msgid "Please add your Email subject"
+msgstr "请添加您的电子邮件主题"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:161
+msgid "Available placeholders:{first_name},{last_name}, {next_payment_date}"
+msgstr "可用的占位符：{first_name}、{last_name}、{next_payment_date}"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:190
+#: templates/renewal-reminders-admin.php:221
+msgid "Note:"
+msgstr "笔记："
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:192
+msgid "Save the settings to receive contents in the email."
+msgstr "保存设置以接收电子邮件中的内容。"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:193
+msgid ""
+"If you made any changes to existing subscriptions or plugin settings, "
+"remember to Sync."
+msgstr "如果您对现有订阅或插件设置进行了任何更改，请记得同步。"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:200
+msgid "Available Shortcodes:"
+msgstr "可用的簡碼："
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:209
+msgid "{first_name}"
+msgstr "{名}"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:209
+msgid "User’s First Name."
+msgstr "用戶的名字。"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:210
+msgid "{last_name}"
+msgstr "{姓}"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:210
+msgid "User’s Last Name."
+msgstr "使用者的姓氏。"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:211
+msgid "{next_payment_date}"
+msgstr "{下次付款日期}"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:211
+msgid "Next Payment Date."
+msgstr "下一個付款日期。"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:212
+msgid "{cancel_subscription}"
+msgstr "{取消訂閱}"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:212
+msgid "Cancel Subscription Button."
+msgstr "取消訂閱按鈕。"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:230
+msgid "Enable Subscription Cancel Button in Renewal Reminder Emails"
+msgstr "在續訂提醒電子郵件中啟用訂閱取消按鈕"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:234
+msgid "You can use the shortcode"
+msgstr "您可以使用簡碼"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:234
+msgid "[subscription_cancel_button]"
+msgstr "[訂閱取消按鈕]"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:234
+msgid "to add the cancel button when editing the template."
+msgstr "編輯模板時新增取消按鈕。"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:245
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:248
+msgid "Cancel Subscription"
+msgstr "取消訂閱"
+
+#: inc/api/callbacks/renewal-reminders-admin-callbacks.php:250
+msgid "Change Subscription Cancel Button Text Here"
+msgstr "在此處更改訂閱取消按鈕文本"
+
+#: inc/api/renewal-reminders-settings-api.php:64
+#: inc/api/renewal-reminders-settings-api.php:65
+#: inc/base/renewal-reminders-settings-links.php:17
+#: templates/renewal-reminders-admin.php:260
+msgid "Settings"
+msgstr "设置"
+
+#: inc/api/renewal-reminders-settings-api.php:72
+msgid "Upgrade"
+msgstr "升级"
+
+#: inc/api/renewal-reminders-settings-api.php:72
+msgid "Upgrade to Pro"
+msgstr "升级至专业版"
+
+#: inc/pages/renewal-reminders-admin.php:44
+#: inc/pages/renewal-reminders-admin.php:45
+msgid "Renewal Reminders"
+msgstr "续订提醒"
+
+#: inc/pages/renewal-reminders-admin.php:113
+msgid "Customise Notification Email"
+msgstr "自定义通知电子邮件"
+
+#: inc/pages/renewal-reminders-admin.php:128
+msgid "Enable notification Emails"
+msgstr "启用通知电子邮件"
+
+#: inc/pages/renewal-reminders-admin.php:139
+msgid "Days Before Reminder Notification"
+msgstr "提醒通知前几天"
+
+#: inc/pages/renewal-reminders-admin.php:150
+msgid "Time for sending Notification Email (in UTC)"
+msgstr "发送通知邮件的时间（UTC 时间）"
+
+#: inc/pages/renewal-reminders-admin.php:163
+msgid "Email Subject"
+msgstr "电子邮件主题"
+
+#: inc/pages/renewal-reminders-admin.php:174
+msgid "Email Content"
+msgstr "电子邮件内容"
+
+#: inc/pages/renewal-reminders-admin.php:186
+msgid "Enable Click To Cancel Button"
+msgstr "啟用點擊取消按鈕"
+
+#: inc/pages/renewal-reminders-admin.php:198
+msgid "Cancel Button Text"
+msgstr "取消按鈕文字"
+
+#: subscriptions-renewal-reminders.php:120
+msgid "Write Something Here!"
+msgstr "在这里写点东西！"
+
+#: subscriptions-renewal-reminders.php:124
+msgid "Renewal Reminders Subscription"
+msgstr "续订提醒订阅"
+
+#: subscriptions-renewal-reminders.php:129
+msgid ""
+"Hi {first_name} {last_name}, \n"
+"        This is an email just to let you know, your subscription expires on "
+"{next_payment_date}! \n"
+"        You can avoid this if already renewed.\n"
+"        Thanks!"
+msgstr ""
+"嗨，{first_name} {last_name}，\n"
+"这封电子邮件只是为了通知您，您的订阅将于 {next_payment_date} 到期！\n"
+"如果已经续订，您可以避免这种情况。\n"
+"谢谢！"
+
+#: subscriptions-renewal-reminders.php:258
+#: templates/renewal-reminders-admin.php:292
+msgid "Upgrade to Pro Version Now"
+msgstr "立即升级至专业版"
+
+#: subscriptions-renewal-reminders.php:267
+msgid "Get Renewal Reminder Subscriptions Premium Pro Version!"
+msgstr "取得續訂提醒訂閱高級專業版！"
+
+#: templates/renewal-reminders-admin.php:131
+msgid "Dismiss this notice."
+msgstr "忽略此通知。"
+
+#: templates/renewal-reminders-admin.php:138
+msgid ""
+"Discover the superpower of having your own development team on call for your "
+"website. We help online business like yours grow faster, experiment easier "
+"and solve technical challenges without the stress and wasted time."
+msgstr ""
+"發現擁有自己的網站開發團隊的超級力量。我們幫助像您這樣的線上業務更快地發展、"
+"更輕鬆地體驗並解決技術挑戰，而無需承受壓力和浪費時間。"
+
+#: templates/renewal-reminders-admin.php:143
+msgid "Get in touch today for a quick chat to see how we can help you."
+msgstr "請立即聯絡我們進行快速交談，以了解我們如何為您提供協助。"
+
+#: templates/renewal-reminders-admin.php:148
+msgid "Talk to Us"
+msgstr "與我們交談"
+
+#: templates/renewal-reminders-admin.php:160
+msgid "settings"
+msgstr "设置"
+
+#: templates/renewal-reminders-admin.php:161
+msgid "Sync"
+msgstr "同步"
+
+#: templates/renewal-reminders-admin.php:187
+msgid ""
+"Synchronize Subscription data to Renewel Reminders Plugin Manually here!"
+msgstr "在此手动将订阅数据同步到续订提醒插件！"
+
+#: templates/renewal-reminders-admin.php:192
+msgid "Manual Sync"
+msgstr "手动同步"
+
+#: templates/renewal-reminders-admin.php:215
+msgid ""
+"Synchronize subscription data to Renewel Reminders Plugin for the first time "
+"here!"
+msgstr "首次在此同步订阅数据到续订提醒插件！"
+
+#: templates/renewal-reminders-admin.php:218
+msgid "Synchronize Subscription data"
+msgstr "同步订阅数据"
+
+#: templates/renewal-reminders-admin.php:221
+msgid ""
+"You can access Settings Tab once, the data Synchronization is completed!"
+msgstr "您可以访问一次“设置”选项卡，数据同步已完成！"
+
+#: templates/renewal-reminders-admin.php:252
+msgid ""
+"Get Renewal Reminders Premium and gain access to more features and shortcodes"
+msgstr "获取续订提醒高级版并获得更多功能和短代码"
+
+#: templates/renewal-reminders-admin.php:253
+msgid "Improve the flexibility of reminder emails, get your license and"
+msgstr "提高提醒电子邮件的灵活性，获取许可证并"
+
+#: templates/renewal-reminders-admin.php:253
+msgid "Upgrade today"
+msgstr "今日更新"
+
+#: templates/renewal-reminders-admin.php:253
+msgid " Make reminder mails much more flexible"
+msgstr "使提醒邮件更加灵活"
+
+#: templates/renewal-reminders-admin.php:266
+msgid "Email Settings"
+msgstr "电子邮件设置"
+
+#: templates/renewal-reminders-admin.php:272
+msgid "Test Email"
+msgstr "测试电子邮件"
+
+#: templates/renewal-reminders-admin.php:278
+msgid "FAQ"
+msgstr "常问问题"
+
+#: templates/renewal-reminders-admin.php:282
+msgid "PRO Features:"
+msgstr "专业功能："
+
+#: templates/renewal-reminders-admin.php:284
+msgid "Compatibility with synchronized subscriptions."
+msgstr "与同步订阅兼容。"
+
+#: templates/renewal-reminders-admin.php:285
+msgid ""
+"The ability to choose the type of subscription period renewal reminder "
+"emails are sent to. This is useful for websites with mixed subscription "
+"periods, as you can avoid sending renewal reminders for subscriptions that "
+"don’t actually need them."
+msgstr ""
+"能够选择要发送续订提醒电子邮件的订阅期类型。这对于订阅期混合的网站非常有用，"
+"因为您可以避免发送不需要的订阅的续订提醒。"
+
+#: templates/renewal-reminders-admin.php:286
+msgid ""
+"Renewal period can be chosen from the available options which is daily, "
+"weekly, monthly or yearly."
+msgstr "您可以从每日、每周、每月或每年的可用选项中选择续订期。"
+
+#: templates/renewal-reminders-admin.php:287
+msgid ""
+"The ability to change the from email address and the sender’s name for "
+"renewal reminder emails."
+msgstr "可以更改续订提醒电子邮件的发件人电子邮件地址和发件人姓名。"
+
+#: templates/renewal-reminders-admin.php:288
+msgid ""
+"Additional shortcodes are included for email templates, such as the total "
+"amount, subscription link, and my account link."
+msgstr "电子邮件模板包含额外的短代码，例如总金额、订阅链接和我的帐户链接。"
+
+#: templates/renewal-reminders-admin.php:289
+msgid "An email test feature has been included."
+msgstr "已包含电子邮件测试功能。"
+
+#: templates/renewal-reminders-admin.php:290
+msgid ""
+"Additional filters that allow you to expand the plugin’s functionality and "
+"customize email templates. You can also use these filters to modify the "
+"subscription period."
+msgstr ""
+"附加过滤器可让您扩展插件的功能并自定义电子邮件模板。您还可以使用这些过滤器来"
+"修改订阅期。"
+
+#: templates/renewal-reminders-email.php:41
+msgid "Renewal Reminder"
+msgstr "续订提醒"
+
+#~ msgid "Supercharge Your Store! %sExclusive Support Plans Now!"
+#~ msgstr "增强您的商店！%s立即获得独家支持计划！"
+
+#~ msgid "Explore Our"
+#~ msgstr "探索我们的"
+
+#~ msgid ""
+#~ "Discover the power of unparalleled assistance with our premium support "
+#~ "services. Elevate your business to new heights with our comprehensive "
+#~ "support solutions!"
+#~ msgstr ""
+#~ "探索我们优质支持服务带来的无与伦比帮助的力量。借助我们全面的支持解决方案将"
+#~ "您的业务提升到新的高度！"
+
+#~ msgid ""
+#~ "Maximize your WooCommerce experience with unlimited support and 24/7 "
+#~ "accessibility. Join our thriving community of successful online "
+#~ "businesses today!"
+#~ msgstr ""
+#~ "通过无限支持和全天候可访问性最大限度地提升您的 WooCommerce 体验。立即加入"
+#~ "我们蓬勃发展的成功在线企业社区！"
+
+#~ msgid "Dedicated"
+#~ msgstr "投入的"
+
+#~ msgid "Schedule Call"
+#~ msgstr "安排通话"
+
+#~ msgid "Managed"
+#~ msgstr "管理"
+
+#~ msgid "$ 579 /mo"
+#~ msgstr "$ 579 /月"
+
+#~ msgid "Our Valuable Package"
+#~ msgstr "我们的宝贵套餐"
+
+#~ msgid "Start $1 Trial"
+#~ msgstr "开始 1 美元试用"
+
+#~ msgid "Essentials"
+#~ msgstr "必需品"
+
+#~ msgid "$ 279 /mo"
+#~ msgstr "$ 279 /月"

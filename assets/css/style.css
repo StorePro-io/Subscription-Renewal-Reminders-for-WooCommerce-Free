@@ -1,0 +1,741 @@
+/*custom style starts here!*/
+
+.rr-main-table {
+	min-width: 300px;
+	max-width: 600px;
+	background: #ffffff;
+	font-family:inherit !important;
+	font-weight: 200;
+	letter-spacing: 1px;
+	line-height: 1.6em;
+	color: #3c3c3c;
+	font-size: 13px;
+	border-collapse: collapse;
+}
+
+.rr-main-row {
+	background-color: #96588a;
+}
+.rr-main-col {
+	padding: 15px 0px;
+}
+h3.rr-main-heading {
+    font-family:inherit !important;
+}
+.rr-inner-table {
+	max-width: 600px;
+	padding: 8px 0px;
+	table-layout: fixed;
+}
+tr.rr-main-row {
+    background: #96588a !important;
+}
+
+ [ren-data-tooltip]:before {
+   
+    content: attr(ren-data-tooltip);
+    position: absolute;
+    opacity: 0;
+       
+    /* transition: all 0.4s cubic-bezier(0.55, 0.09, 0.68, 0.53); */
+    padding: 10px 75px;
+    color:white;
+    border-radius: 3px;
+    box-shadow: 1px 1px .5px silver;    
+    max-width: 150px;
+}
+[ren-data-tooltip]:hover:before {
+
+    opacity: 1;
+    
+    background: #383838;
+    margin-top: 16px;
+	margin-left: -150px; 
+	font-size: 11px   
+}
+[ren-data-tooltip]:not([ren-data-tooltip-persistent]):before {
+    pointer-events: none;
+}
+
+.adm-tooltip-renew-rem {
+    background: #666;
+    height: 13px;
+    width: 13px;
+    border-radius: 50%;
+	color: white;
+	font-size: 11px;
+	text-align: center;
+    z-index: 9999999;
+}
+
+
+textarea#froala-editor {
+    width: 515px;
+}
+input.renew-admin_email_subj {
+    width: 515px;
+}
+h1.renew-rem-makin-title {
+    color: #23282d;
+    font-size: 2em;
+    margin: 1em 0;
+}
+span.renew-rem-by-text {
+    float: right;
+    margin-top: -46px;
+}
+
+p.rr-content-text {
+    white-space: pre-line !important;
+}
+hr.rr-footer-rule {
+    border-top: 2px solid #96588a;
+	margin: 8px 58px 8px 58px;
+}
+
+p.rr-content-text {
+    margin: 25px 30px 27px 25px;
+}
+p.rr-brand-text {
+    text-align: center;
+	color: #8A8A8A;
+    text-shadow: 2px 2px white;
+	font-size: 10px;
+}
+
+a.rr-brand-link {
+    text-decoration: none;
+	font-size: 13px;
+	color: #8A8A8A !important;
+	
+}
+p.notice-rem-text {
+    font-size: 11px !important;
+    font-weight: 600;
+    font-style: italic;
+}
+
+/*css end*/
+
+/*loaader*/
+
+.renew-spin-meter {
+    box-sizing: content-box;
+    height: 12px; /* Can be anything */
+    position: relative;
+    /* margin: 60px 0 20px 0; Just for demo spacing */
+    background: #555;
+    border-radius: 80px;
+    /* padding: 10px; */
+    box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
+  }
+  .renew-spin-meter > span {
+    display: block;
+    height: 100%;
+    border-radius: 80px;
+    background-color: rgb(98 185 235);
+   
+    box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3),
+      inset 0 -2px 6px rgba(0, 0, 0, 0.4);
+    position: relative;
+    overflow: hidden;
+  }
+  .renew-spin-meter > span:after,
+  .animate > span > span {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-image: linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 0.2) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(255, 255, 255, 0.2) 75%,
+      transparent 75%,
+      transparent
+    );
+    z-index: 1;
+    background-size: 50px 50px;
+    animation: move 2s linear infinite;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    overflow: hidden;
+  }
+  
+  
+  #renew-rem-page-wrap {
+    width: 490px;
+    margin: 10px auto;
+  }
+  .renew-rem-progress {
+    margin: 10px auto;
+    min-height: 12px;
+}
+ 
+  /*css for default sync page*/
+  .renew-main-sync-box {
+
+    margin: auto;
+    margin-top: 25px;
+    width: 50%;
+    border: 1px solid #c3c4c7;
+    padding: 10px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 20%);
+}
+
+/*button style*/
+
+.renew-rem-button-sect {
+    margin: 2%;
+    text-align: center;
+}
+
+
+.adm-tooltip-renew-rem:hover {
+    background: black;
+}
+
+.renew-rem-button-sect {
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .renew-firstload {
+    width: 203px;
+    height: 45px;
+   
+    font-size: 12px;
+    text-transform: uppercase;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+   
+   
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+
+    background: #2271b1;
+    border: none;
+    color: #fff;
+    text-decoration: none;
+    text-shadow: none;
+    }
+  
+  .renew-firstload:hover {
+    background-color: #a07c44;
+    box-shadow: 0px 15px 20px #a07c44;
+    color: #fff;
+    transform: translateY(-7px);
+  }
+
+  div#wpfooter {
+    bottom: auto !important;
+}
+
+.ren-completed-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 7px auto;
+    font-weight: 900;
+}
+
+.renew-text {
+    padding-top: 85px;
+    padding-bottom: 10px;
+}
+
+.re-compare-bar-tabs {
+    padding-bottom: 70px;
+    padding-top: 20px;
+}
+
+.renew-rem-button-sect-default {
+    padding-top: 100px;
+}
+
+.re-compare-bar-tabs-sync {
+    padding-bottom: 50px;
+    padding-top: 30px;
+}
+
+h3.rr-notification-title {
+    font-size:
+     20px !important;
+}
+ 
+/*custom style end -1.0.4*/
+
+/*custom style version 1.1.7  */
+.sp-renewal-pro p, .sp-renewal-pro ul li{
+  font-size: 14px;
+}
+.screenshots {
+  display: flex;
+  margin-top: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  }
+.screenshots .img-card {
+  margin: 0 21px 25px 5px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border: 11px solid #edeef1;
+  border-radius: 5px;
+}
+.screenshots .column {
+  margin-bottom: 15px;
+width: 46%;
+}
+.screenshots .img-card img{
+width: 100%;
+}
+.screenshots .column p{
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: #666565db;
+  margin-top: 0 !important;
+}
+  .premium-links p, .premium-features p {
+    color: #1d2327;
+    font-weight: 600;
+  }
+  .premium-features li {
+    list-style: disclosure-closed;
+  }
+  .premium-features ul{
+    margin-left: 25px;
+  }
+
+  .button-upgrade {
+    padding: 10px;
+    width: 21%;
+    text-align: center;
+    background: #fbb03b;
+    border-radius: 5px;
+    margin-top: 26px;
+  }
+  .button-upgrade a{
+    color: #0c3c74!important;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 17px;
+  }
+#wpcontent {
+  background: #f1f1f1;
+}
+.sp-renewal-pro {
+  background: #fff;
+padding: 20px;
+margin-right: 15px;
+border: 1px solid #b5b2b2;
+border-radius: 2px;
+box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+
+
+/*custom style end--version 1.1.7  */
+
+/* custom style version 1.1.8 */
+.sp-ad {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  margin-top: 30px;
+  position: relative;
+}
+
+.sp-col-3 {
+  width: 25%;
+  border-top: 1px solid #80808075;
+  border-bottom: 1px solid #80808075;
+  border-left: 1px solid #80808075;
+  padding: 0px 0px 20px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.title {
+  font-size: 20px;
+  color: #27b664;
+margin-bottom: 11px;
+}
+
+.sp-valuable-package {
+  background: #ca4a20;
+  width: 100%;
+  position: relative;
+  left: -20px;
+  color: #fff;
+  height: 36px;
+  z-index: 1;
+  display: block;
+  bottom: 0;
+  padding: 5px 21px 0px;
+font-weight: 700;
+  font-size: 14px;
+}
+
+.sp-valuable-package::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 10.5px solid transparent;
+  border-right: -5.5px solid transparent;
+  border-top: 11px solid #ca4a20;
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+}
+.sp-valuable-package::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-right: 14.5px solid transparent;
+  border-left: -5.5px solid transparent;
+  border-top: 11px solid #ca4a20;
+  position: absolute;
+  bottom: -10px;
+  right: 0;
+}
+.sp-col-3.border-right {
+  border-right: 1px solid #80808075;
+}
+.sp-col-3.valuable-package {
+  position: relative;
+  max-height: 100%;
+}
+.sp-col-3.valuable-package::after {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border: 9px solid #2dcd71;
+  top: -8px;
+}
+.sp-title {
+  height: 70px;
+}
+.sp-ad .pricing-button {
+  text-decoration: none;
+  background-color: #5ac7fb;
+  color: #fff;
+  padding: 13px;
+  border-radius: 3px;
+}
+.sp-pricing-footer {
+  margin-top: 25px;
+z-index: 99;
+  position: relative;
+}
+.sp-ad .inner {
+  width: 100%;
+}
+.sp-title.border {
+  border-bottom: 1px solid #0b0b0b47;
+}
+.sp-star-rating {
+  color: #2271b1;
+}
+/* custom style version 1.1.9 */
+.sp-renewal-pro{
+  margin-top: 25px;
+}
+.wp-core-ui .notice.is-dismissible{
+  margin: 10px 20px 2px 0px;
+}
+.button-upgrade{
+  width:auto;
+  max-width: 240px;
+}
+.renew-main-sync-box {
+  border-radius: 10px;
+ padding: 15px;
+  width: 70%;}
+.sp-ad .sp-col-3{
+  width: 30%;
+  height: 200px;
+  border: 0px;
+  background: #f1f1f1;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.sp-ad{
+  justify-content: center;
+  gap: 3%;
+  border: 1px solid #bfbfbf;
+  padding: 25px 10px;
+  width: 97%;
+  background-color:#0c3c74;
+
+}
+.sp-valuable-package{
+  background-color: #ca4a20;
+}
+.nav-tab-wrapper .nav-tab{
+  margin-left: 0;
+  margin-right:.5em ;
+}
+.sp-valuable-package {
+  padding: 16px 11px 0px;
+  position: absolute;
+  top: 37px;
+  transform: rotate(318deg);
+  left: -36%;
+}
+.sp-col-3.valuable-package::after{
+  border: 0px;
+}
+.sp-title .title{
+  color: #0c3c74;
+  font-size: 25px;
+}
+.sp-pricing-list .pricing-item{
+  font-size: 18px;
+    font-weight: 400;
+}
+.sp-ad .pricing-button{
+  background-color: #2dcd71;
+}
+.renew-admin_notify_day {
+  width: 85px;
+}
+.wp-editor-wrap {
+  position: relative;
+  width: 518px;
+  max-width: 100%;
+}
+
+.re-compare-bar-tabs-sync{
+  padding-bottom: 0px;
+}
+.renew-rem-button-sect-default{
+  padding-top: 0px;
+}
+.screenshots .img-card {
+  aspect-ratio: 15/7.8;
+  background-color:#f0f0f1 ;
+}
+.sp-ad + .nav-tab-wrapper{
+  margin-top: 20px;
+}
+.sp-title.border {
+  border-bottom: 1px solid #b6aaaa47;
+}
+.sp-ad-dismiss {
+  position: absolute;
+    top: -5px;
+    right: -5px;
+}
+.wp-core-ui .notice.is-dismissible{
+  padding:10px;
+}
+.is-dismissible .wml-review-content .wml-review-desc{
+  margin-top: 0px!important;
+}
+.is-dismissible  .wml-review-content {
+  padding-bottom: 0!important;
+}
+.sp-ad .pricing-button {
+  background-color: #fbb03b;
+  color: #0c3c74;
+}
+.store-clr{
+  color: #f7931e !important;;
+}
+.sp-ad-dismiss::before{
+  color: white;
+}
+.sp-col-12{
+  width: 100%;
+}
+.sp-col-12 *{
+  color: white;
+}
+.sp-col-12 h2{
+  font-size: 1.5rem;
+  margin-top: 0;
+  line-height:1.2;
+  margin-bottom: 18px;
+  font-weight: 600;
+}
+.sp-col-12 p{
+  font-size: 16px;
+  line-height: 1.7;
+  margin-bottom: 30px;
+}
+@media only screen and (max-width:1300px){
+  .sp-valuable-package{
+    position:unset;
+    transform: none;
+  }
+}
+  @media only screen and (max-width:767px){
+    .wp-editor-wrap {
+      width: 100%;
+    }
+    .sp-ad{
+      width: 87%;
+    }
+    .sp-ad-dismiss{
+      position: absolute;
+      top:-10px;
+      right: -11px;
+    }
+    h1.renew-rem-makin-title{
+      line-height: normal;
+    }
+    .renew-main-sync-box {
+      border-radius: 10px;
+     padding: 15px;
+      width: 85%;}
+      .sp-ad .sp-col-3{
+        width: 95%;
+        margin: auto;
+       
+        margin-bottom: 20px;
+      }
+  }
+  .renew-rem-shortcodes .short-code-h {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    background-color: #f6f7f7;
+    border-bottom: 1px solid #dcdcde;
+}
+.renew-rem-shortcodes {
+    border: 1px solid #dcdcde;
+}
+.renew-rem-shortcodes ul {
+    padding: 0 10px;
+    color: black;
+}
+.renew-rem-shortcodes li span:hover {
+    color: #2271b1;
+    cursor: pointer;
+}
+.renew-rem-shortcodes ul li span {
+    font-weight: bold;
+}
+
+/* ---------------Sp -Ads-styles------------------------------------------------------------------- */
+.sp-ad {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5%;
+  border: 1px solid #bfbfbf;
+  padding: 25px 10px;
+  width: 97%;
+  border-radius: 12px;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
+  animation: gradientAnimation 1s ease infinite;
+  background: linear-gradient(90deg, #0c3c74, #0a2f5a, #0c3c74);
+  background-size: 200% 200%;
+}
+
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+.sp-pricing-footer {
+  margin-top: 45px;
+z-index: 99;
+padding-bottom: 2%;
+  position: relative;
+}
+.sp-pricing-list .pricing-item {
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.sp-ad .pricing-button {
+  text-decoration: none;
+  background-color: #fbb03b;
+  color: #fff;
+  /* border: none; */
+  /* border-radius: 25px; */
+  padding: 10px 30px;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: large;
+  position: relative; /* Ensures transform works independently */
+  transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Initial shadow */
+}
+
+.sp-ad .pricing-button:hover {
+  transform: translateY(-15px); /* Increase move-up to make it more obvious */
+  box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+  background-color: white;
+  color: #fbb03b;
+  border: 1px solid #fbb03b;
+
+}
+.sp-col-12 {
+  width: 100%;
+  padding-top: 2%;
+}
+
+.sp-col-12 * {
+  color: white;
+}
+
+.sp-col-12 h2 {
+  
+  margin-top: 0;
+  line-height: 1.3;
+  margin-bottom: 18px;
+  font-weight: 400;
+}
+
+.sp-ad-dismiss {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  color: white;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.sp-ad-dismiss:hover {
+  color: #fbb03b;
+}
+.sp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo-container a img{
+  width: 80px;
+}
+
+
+ 
+
+
+/* ---------------------------------------- */
