@@ -46,35 +46,39 @@ class SPRRTableOperations
      //Going through each current customer orders
     foreach ( $subscriptions as $subscription ) {
       $subscription_data = wcs_get_subscription( $subscription );
-      $subscription_id = $subscription->get_ID();
-      $customer_id = $subscription->get_user_id();
-      $billing_first_name = $subscription-> get_billing_first_name();
-      $billing_last_name  = $subscription-> get_billing_last_name();
-      $customer_name = $billing_first_name . ' ' . $billing_last_name;
-      // $next_payment_date_dt = $subscription-> get_date( 'end' );
-      $next_payment_date_dt = $subscription->get_date( 'next_payment' );
-      $next_payment_date = date( 'Y-m-d', strtotime( $next_payment_date_dt ) );
-      $notify_days_before = date( 'Y-m-d', strtotime( $next_payment_date . '-'.$notify_days_count.' day' ) );  
-      $subscription_details = $wpdb->get_results($wpdb->prepare("SELECT next_payment_date, notification_sent_date FROM $table_name WHERE subscription__id = %d",$subscription_id));
-        if ( $subscription->get_status() == 'active' && $next_payment_date_dt ) 
-        {
-          if($subscription_details ) 
-            {
-              $wpdb->update($table_name, array('next_payment_date'=>$next_payment_date, 'notification_sent_date'=>$notify_days_before), array('subscription__id'=>$subscription_id));
-            }else{
-              $wpdb->insert( 
-                $table_name, 
-                array( 
-                  'subscription__id' => $subscription_id, 
-                  'subscription__name' => $customer_name, 
-                  'next_payment_date' => $next_payment_date,
-                  'notification_sent_date' => $notify_days_before, 
-                ) 
-              );
-            }
-        }elseif( $subscription->get_status() == 'cancelled' || $subscription->get_status() == 'expired'|| $subscription->get_status() == 'pending-cancel' || $subscription->get_status() == 'on-hold') {
-          $wpdb->delete($table_name,  array('subscription__id'=>$subscription_id));
-        }
+      if (is_a($subscription, 'WC_Subscription')) {
+        $subscription_id = $subscription->get_ID();
+        $customer_id = $subscription->get_user_id();
+        $billing_first_name = $subscription-> get_billing_first_name();
+        $billing_last_name  = $subscription-> get_billing_last_name();
+        $customer_name = $billing_first_name . ' ' . $billing_last_name;
+        // $next_payment_date_dt = $subscription-> get_date( 'end' );
+        $next_payment_date_dt = $subscription->get_date( 'next_payment' );
+        $next_payment_date = date( 'Y-m-d', strtotime( $next_payment_date_dt ) );
+        $notify_days_before = date( 'Y-m-d', strtotime( $next_payment_date . '-'.$notify_days_count.' day' ) );  
+        $subscription_details = $wpdb->get_results($wpdb->prepare("SELECT next_payment_date, notification_sent_date FROM $table_name WHERE subscription__id = %d",$subscription_id));
+          if ( $subscription->get_status() == 'active' && $next_payment_date_dt ) 
+          {
+            if($subscription_details ) 
+              {
+                $wpdb->update($table_name, array('next_payment_date'=>$next_payment_date, 'notification_sent_date'=>$notify_days_before), array('subscription__id'=>$subscription_id));
+              }else{
+                $wpdb->insert( 
+                  $table_name, 
+                  array( 
+                    'subscription__id' => $subscription_id, 
+                    'subscription__name' => $customer_name, 
+                    'next_payment_date' => $next_payment_date,
+                    'notification_sent_date' => $notify_days_before, 
+                  ) 
+                );
+              }
+          }elseif( $subscription->get_status() == 'cancelled' || $subscription->get_status() == 'expired'|| $subscription->get_status() == 'pending-cancel' || $subscription->get_status() == 'on-hold') {
+            $wpdb->delete($table_name,  array('subscription__id'=>$subscription_id));
+          }
+      }else {
+        error_log("Invalid subscription ID: $subscription_id");
+     }
     } 
   } 
 }
