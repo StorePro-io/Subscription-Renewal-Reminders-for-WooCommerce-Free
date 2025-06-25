@@ -3,15 +3,15 @@
  * Plugin Name:       Subscriptions Renewal Reminders 
  * Plugin URI:        https://storepro.io/subscription-renewal-premium/
  * Description:       Renewal Reminders for Subscriptions automatically send your subscribers a courtesy reminder via email X days before their subscription renews. Shortcodes to be used for updating the subscriber's First and Last Names are {first_name} and {last_name} respectively.
- * Version:           1.3.3
+ * Version:           1.3.7
  * Author:            StorePro
  * Author URI:        https://storepro.io/
  * Text Domain:       subscriptions-renewal-reminders
  * Domain Path:       /languages
  * 
  * WC requires at least: 3.0
- * WC tested up to: 9.4.1
- *
+ * WC tested up to: 9.5.1
+ * 
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
  */
@@ -214,10 +214,10 @@ add_action( 'wp_ajax_renew_get_data_test', 'renew_get_data_test' );
  * function to update the database on change of subscription status
  */
 
-function renew_sunscription_change_db_update() {
+function renew_sunscription_change_db_update($subscription_id) {
 
     require_once SPRR_PLUGIN_DIR . 'inc/base/renewal-reminders-table-operations.php';
-    SPRRTableOperations::sprr_active_subscription_list();
+    SPRRTableOperations::update_subscription_record($subscription_id);
 }
 add_action('woocommerce_subscription_status_updated','renew_sunscription_change_db_update');
 

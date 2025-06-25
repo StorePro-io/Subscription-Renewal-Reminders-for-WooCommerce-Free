@@ -3,7 +3,7 @@ Contributors: StorePro
 Tags: Subscription Renewal emails, Automated Reminders , Subscriptions , Renewal Reminders, subscription reminder emails
 Requires at least: 5.2
 Tested up to: 6.7
-Stable tag: 1.3.3
+Stable tag: 1.3.7
 Requires PHP: 7.0
 License: GPL v3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -46,9 +46,23 @@ We also have a premium version of the plugin that has expanded functionality.
 <p>👉<strong>Shortcodes </strong> - Additional shortcodes are included for email templates, such as the total amount, subscription link, and my account link.</p>
 <p>👉<strong>Test Email</strong> -  An email test feature has been included. </p>
 <p>👉<strong>Filters</strong> - Additional filters that allow you to expand the plugin’s functionality and customize email templates. You can also use these filters to modify the subscription period.</p>
+<p>👉<strong>Admin Renewal Notifications</strong> - Added options to send renewal reminder emails to admins and customize the admin email template.</p>
 </blockquote>
 
 == Changelog ==
+= 1.3.7 - 2025-04-25 =
+* Tested with WooCommerce 9.8.2, WordPress 6.8, WooCommerce subscription 7.4.0 and PHP version 8.2.
+
+= 1.3.6 - 2025-03-12 =
+* Tested with WooCommerce 9.7.1, WordPress 6.7.2, and PHP version 8.2.
+
+
+= 1.3.5 - 2025-02-12 =
+* Bug fixes on performance issues while subscription status update.Ref:https://wordpress.org/support/topic/very-slow-checkout-when-lots-of-orders/
+
+= 1.3.4 - 2025-01-01 =
+* Bug fixes on manual sync.
+* Tested with WooCommerce 9.5.1, WordPress 6.9.1, and PHP version 8.2.
 
 = 1.3.3 - 2024-11-20 =
 * Added Language translation functionality.
