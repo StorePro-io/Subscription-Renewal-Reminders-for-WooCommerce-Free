@@ -23,7 +23,7 @@ $charset_collate = $wpdb->get_charset_collate();
 
 ?>
 <!-- Our admin page content should all be inside .wrap -->
-<div class="wrapper">
+<div class="wrapper renewal-reminder-plugin">
   <!-- Add a review notice  -->
 
   <?php
@@ -34,18 +34,17 @@ $charset_collate = $wpdb->get_charset_collate();
   $banner_closed = isset($_COOKIE['bannerClosed']) && $_COOKIE['bannerClosed'] === 'true';
 
   if (!$is_dismissed && !$banner_closed) {
-
   ?>
 
     <div class="sp-review">
       <div id="sp-notice-settings" class="sp-notice notice notice-success is-dismissible" data-dismissible="disable-done-notice-forever">
-        <div>
-          <strong>
-            <?php esc_html_e('Hey There! If you like our plugin Subscription Renewal Reminders don\'t forget to rate and leave a Review', 'renewal-reminders-sp'); ?>
+        <div style="padding: 5px 0;">
+          <strong style="color: #2c3e50; font-size: 15px;">
+            <?php esc_html_e('🎉 Hey There! If you like our plugin Subscription Renewal Reminders don\'t forget to rate and leave a Review', 'renewal-reminders-sp'); ?>
           </strong><br>
-          <p>
+          <p style="margin: 10px 0; line-height: 1.6;">
             <?php esc_html_e('We\'d love to hear your feedback!', 'renewal-reminders-sp'); ?>
-            <a href="https://wordpress.org/plugins/subscriptions-renewal-reminders/#reviews" target="_blank" class="dismiss-this">
+            <a href="https://wordpress.org/plugins/subscriptions-renewal-reminders/#reviews" target="_blank" class="dismiss-this" style="color: #667eea; font-weight: 600; text-decoration: none;">
               <?php esc_html_e('Please leave us a review.', 'renewal-reminders-sp'); ?>
             </a>
             <?php _e(' Enjoying our plugin? Please rate it!', 'my-plugin-textdomain');
@@ -76,8 +75,8 @@ $charset_collate = $wpdb->get_charset_collate();
             }
             ?>
           </p>
-
         </div>
+        
         <script>
           document.addEventListener('DOMContentLoaded', function() {
             var spNotice = document.getElementById('sp-notice-settings');
@@ -95,164 +94,166 @@ $charset_collate = $wpdb->get_charset_collate();
             }
           });
         </script>
-
-
-
-
-
-
-
-      <?php
-    } ?>
-
       </div>
-
-      <!-- Print the page title -->
-
-      <h1 class="renew-rem-makin-title"> <?php echo esc_html__('Subscriptions Renewal Reminders', 'subscriptions-renewal-reminders'); ?></h1>
-      <?php settings_errors();
-
-
-      ?>
     </div>
-    <!-- Add an advertisement for storepro -->
 
+    <?php
+  } ?>
+
+  <!-- Print the page title with enhanced styling -->
+  <div style="text-align: center; margin: 30px 0;">
+    <h1 class="renew-rem-makin-title"> 
+      <?php echo esc_html__('🔄 Subscriptions Renewal Reminders', 'subscriptions-renewal-reminders'); ?>
+    </h1>
+    <p class="renew-rem-subtitle">
+      <?php echo esc_html__('Automate your subscription renewal notifications with ease', 'subscriptions-renewal-reminders'); ?>
+    </p>
+  </div>
   
+  <?php settings_errors(); ?>
 
+  <!-- Enhanced advertisement for storepro -->
   <div class="sp-ad">
       <div class="sp-header">
           <div class="logo-container">
               <a href="http://storepro.io/" target="_blank">
-                  <img src="<?php echo esc_url(plugin_dir_url(__FILE__)); ?>img/storepro.jpg">
+                  <img src="<?php echo esc_url(plugin_dir_url(__FILE__)); ?>img/storepro.jpg" alt="StorePro">
               </a>
           </div>
-          <button type="button" class="notice-dismiss sp-ad-dismiss">
+          <button type="button" class="notice-dismiss sp-ad-dismiss" title="<?php echo esc_attr__('Dismiss this notice', 'subscriptions-renewal-reminders'); ?>">
               <span class="screen-reader-text">
                   <?php echo esc_html__('Dismiss this notice.', 'subscriptions-renewal-reminders'); ?>
               </span>
           </button>
       </div>
 
-      <div class="sp-col-12">
-          <h2>
-              <?php echo esc_html__('Discover the superpower of having your own development team on call for your website. We help online business like yours grow faster, experiment easier and solve technical challenges without the stress and wasted time.','subscriptions-renewal-reminders'); ?>
-              <br>
-              
+      <div class="sp-col-12 sp-ad-content">
+        <div>
+          <h2  class="sp-ad-title-typer">
+              <?php echo esc_html__('🚀 Discover the superpower of having your own development team on call for your website','subscriptions-renewal-reminders'); ?>
           </h2>
-          <h2>
-            <?php echo esc_html__('Get in touch today for a quick chat to see how we can help you.','subscriptions-renewal-reminders'); ?>
-          </h2>
+          <p class="sp-ad-text-typer">
+              <?php echo esc_html__('We help online businesses like yours grow faster, experiment easier and solve technical challenges without the stress and wasted time. Get in touch today for a quick chat to see how we can help you.','subscriptions-renewal-reminders'); ?>
+          </p>
+        </div>
           
           <div class="sp-pricing-footer">
               <a href="https://calendly.com/storepro" target="_blank" class="pricing-button">
-                  <?php echo esc_html__('Talk to Us', 'subscriptions-renewal-reminders'); ?>
-                  
+                  <?php echo esc_html__('💬 Talk to Us', 'subscriptions-renewal-reminders'); ?>
               </a>
           </div>
       </div>
-</div>
+  </div>
 
 
-    <!-- Here are our tabs -->
-    <nav class="nav-tab-wrapper">
+  <!-- Enhanced navigation tabs -->
+  <nav class="nav-tab-wrapper">
+      <a href="?page=sp-renewal-reminders&tab=settings" class="nav-tab <?php if ($tab === 'settings'): ?>nav-tab-active<?php endif; ?>">
+          ⚙️ <?php echo esc_html__('Settings', 'subscriptions-renewal-reminders'); ?>
+      </a>
+      <a href="?page=sp-renewal-reminders&tab=sync" class="nav-tab <?php if ($tab === 'sync'): ?>nav-tab-active<?php endif; ?>">
+          🔄 <?php echo esc_html__('Sync', 'subscriptions-renewal-reminders'); ?>
+      </a>
+  </nav>
 
-
-      <a href="?page=sp-renewal-reminders&tab=settings" class="nav-tab <?php if ($tab === 'settings'): ?>nav-tab-active<?php endif; ?>"><?php echo esc_html__('settings', 'subscriptions-renewal-reminders'); ?></a>
-      <a href="?page=sp-renewal-reminders&tab=sync" class="nav-tab <?php if ($tab === 'sync'): ?>nav-tab-active<?php endif; ?>"><?php echo esc_html__('Sync', 'subscriptions-renewal-reminders'); ?></a>
-
-    </nav>
-
-
-    <div class="renew-rem-tab-content">
-      <?php
-
-      switch ($tab):
-        case 'settings':
-      ?>
+  <div class="renew-rem-tab-content">
+    <?php
+    switch ($tab):
+      case 'settings':
+    ?>
+        <div class="tab-content-inner">
           <form method="post" action="options.php">
             <?php
             settings_fields('storepro_options_group');
             do_settings_sections('storepro_plugin');
             submit_button();
-
             ?>
           </form>
-        <?php
-
-          break;
-        case 'sync':
-        ?>
-          <br>
-          <br>
-          <div class="re-compare-bar-tabs-sync"><?php echo esc_html__('Synchronize Subscription data to Renewel Reminders Plugin Manually here!', 'subscriptions-renewal-reminders'); ?></div>
-          <br>
-          <div class="renew-rem-progress"></div>
-          <br>
-          <div class="renew-rem-button-sect-default">
-            <button class="button-primary" id="renew-defload"><?php echo esc_html__('Manual Sync', 'subscriptions-renewal-reminders'); ?></button>
-          </div>
-
-          <br>
-          <?php
-
-          break;
-
-        default:
-
-          //check if there is any data in the table
-          global $wpdb;
-
-          $renew_table_name = $wpdb->prefix . "renewal_reminders";
-
-
-          $renew_count_query = "select count(*) from $renew_table_name";
-          $renew_num = $wpdb->get_var($renew_count_query);
-
-          if ((int)$renew_num == 0) {
-          ?>
-            <div class="renew-main-sync-box">
-
-              <div class="re-compare-bar-tabs"><?php echo esc_html__('Synchronize subscription data to Renewel Reminders Plugin for the first time here!', 'subscriptions-renewal-reminders'); ?></div>
-              <br>
-              <div class="renew-rem-button-sect">
-                <button class="renew-firstload" id="ren-spin-ajax"><?php echo esc_html__('Synchronize Subscription data', 'subscriptions-renewal-reminders'); ?></button>
-              </div>
-
-              <div class="renew-text"><br><?php echo esc_html__('Note:', 'subscriptions-renewal-reminders'); ?><br> <?php echo esc_html__('You can access Settings Tab once, the data Synchronization is completed!', 'subscriptions-renewal-reminders'); ?><br></div>
-
-              <br>
-            </div>
-          <?php
-          } else {
-            // Redirect browser
-
-            global $wp;
-            $sp_page = "";
-            if ($_GET['page']) {
-              $sp_page = filter_input(INPUT_POST | INPUT_GET, 'page', FILTER_SANITIZE_SPECIAL_CHARS);
-            }
-            $ren_current_url = admin_url("admin.php?page=" . $sp_page) . "&tab=settings";
-            header("Location: $ren_current_url");
-
-
-            exit;
-          }
-          ?>
+        </div>
       <?php
-          break;
-      endswitch; ?>
-    </div>
-</div>
+        break;
+      case 'sync':
+      ?>
+        <div class="tab-content-inner">
+          <div class="re-compare-bar-tabs-sync">
+            <h3 style="color: #2c3e50; margin-bottom: 10px;">🔄 Manual Synchronization</h3>
+            <p><?php echo esc_html__('Synchronize Subscription data to Renewal Reminders Plugin manually here! This will update your database with the latest subscription information.', 'subscriptions-renewal-reminders'); ?></p>
+          </div>
+          
+          <div class="renew-rem-progress"></div>
+          
+          <div class="renew-rem-button-sect-default">
+            <button class="button-primary" id="renew-defload" style="font-size: 14px;">
+              🔄 <?php echo esc_html__('Start Manual Sync', 'subscriptions-renewal-reminders'); ?>
+            </button>
+          </div>
+        </div>
+        <?php
+        break;
 
+      default:
+        //check if there is any data in the table
+        global $wpdb;
+        $renew_table_name = $wpdb->prefix . "renewal_reminders";
+        $renew_count_query = "select count(*) from $renew_table_name";
+        $renew_num = $wpdb->get_var($renew_count_query);
 
+        if ((int)$renew_num == 0) {
+        ?>
+          <div class="renew-main-sync-box">
+            <div style="text-align: center; margin-bottom: 20px;">
+              <div style="font-size: 48px; margin-bottom: 15px;">🚀</div>
+              <h3 style="color: #2c3e50; margin-bottom: 15px;">Welcome to Subscription Renewal Reminders!</h3>
+            </div>
+            
+            <div class="re-compare-bar-tabs">
+              <?php echo esc_html__('Let\'s get started by synchronizing your subscription data for the first time. This will set up everything you need to send automated renewal reminders to your customers.', 'subscriptions-renewal-reminders'); ?>
+            </div>
+            
+            <div class="renew-rem-button-sect">
+              <button class="renew-firstload" id="ren-spin-ajax">
+                🔄 <?php echo esc_html__('Start Initial Synchronization', 'subscriptions-renewal-reminders'); ?>
+              </button>
+            </div>
 
-<div class="sp-renewal-pro">
-
-  <div class="premium-links">
-    <h3><?php echo esc_html__('Get Renewal Reminders Premium and gain access to more features and shortcodes', 'subscriptions-renewal-reminders'); ?></h3>
-    <p><?php echo esc_html__('Improve the flexibility of reminder emails, get your license and', 'subscriptions-renewal-reminders'); ?> <a href="https://storepro.io/subscription-renewal-premium/" target="_blank"><?php echo esc_html__('Upgrade today', 'subscriptions-renewal-reminders'); ?></a> <?php echo esc_html__(' Make reminder mails much more flexible', 'subscriptions-renewal-reminders'); ?></p>
+            <div class="renew-text">
+              <div style="background: rgba(102, 126, 234, 0.1); padding: 15px; border-radius: 8px; border-left: 4px solid #667eea;">
+                <strong>📝 <?php echo esc_html__('Note:', 'subscriptions-renewal-reminders'); ?></strong><br>
+                <?php echo esc_html__('You can access the Settings tab once the data synchronization is completed. This process will import all your existing subscription data and set up the reminder system.', 'subscriptions-renewal-reminders'); ?>
+              </div>
+            </div>
+          </div>
+        <?php
+        } else {
+          // Redirect browser
+          global $wp;
+          $sp_page = "";
+          if (isset($_GET['page'])) {
+            $sp_page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_SPECIAL_CHARS);
+          }
+          $ren_current_url = admin_url("admin.php?page=" . $sp_page) . "&tab=settings";
+          echo '<script type="text/javascript">window.location.href = "' . esc_url_raw($ren_current_url) . '";</script>';
+          exit;
+        }
+        ?>
+    <?php
+        break;
+    endswitch; ?>
   </div>
-  <div class="screenshots">
+
+  <!-- Enhanced premium section -->
+  <div class="sp-renewal-pro">
+    <div class="premium-links">
+      <div style="text-align: center; margin-bottom: 25px;">
+        <h3 style="color: #2c3e50; font-size: 24px; margin-bottom: 10px;">
+          ✨ <?php echo esc_html__('Upgrade to Premium', 'subscriptions-renewal-reminders'); ?>
+        </h3>
+        <p style="color: #7f8c8d; font-size: 16px;">
+          <?php echo esc_html__('Unlock advanced features and take your renewal reminders to the next level', 'subscriptions-renewal-reminders'); ?>
+        </p>
+      </div>
+      
+      <div class="screenshots">
     <div class="column">
       <div class="img-card">
         <a href="<?php echo esc_url(plugin_dir_url(__FILE__)); ?>img/setting.jpg"><img src="<?php echo esc_url(plugin_dir_url(__FILE__)); ?>img/setting.jpg" /></a>
@@ -295,7 +296,12 @@ $charset_collate = $wpdb->get_charset_collate();
     </div>
   </div>
 
-  <span class="renew-rem-by-text"><a href="http://storepro.io/" target="_blank"> <img src="<?php echo esc_url(plugin_dir_url(__FILE__)); ?>img/storepro-logo.png"></a></span>
-
-</div>
+    </div>
+    
+    <span class="renew-rem-by-text">
+      <a href="http://storepro.io/" target="_blank"> 
+        <img src="<?php echo esc_url(plugin_dir_url(__FILE__)); ?>img/storepro-logo.png" alt="StorePro" style="border-radius: 5px;">
+      </a>
+    </span>
+  </div>
 </div>

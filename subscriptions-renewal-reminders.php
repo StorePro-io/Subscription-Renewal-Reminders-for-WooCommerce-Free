@@ -3,7 +3,7 @@
  * Plugin Name:       Subscriptions Renewal Reminders 
  * Plugin URI:        https://storepro.io/subscription-renewal-premium/
  * Description:       Renewal Reminders for Subscriptions automatically send your subscribers a courtesy reminder via email X days before their subscription renews. Shortcodes to be used for updating the subscriber's First and Last Names are {first_name} and {last_name} respectively.
- * Version:           1.3.7
+ * Version:           1.3.8
  * Author:            StorePro
  * Author URI:        https://storepro.io/
  * Text Domain:       subscriptions-renewal-reminders

@@ -2,8 +2,8 @@
 Contributors: StorePro
 Tags: Subscription Renewal emails, Automated Reminders , Subscriptions , Renewal Reminders, subscription reminder emails
 Requires at least: 5.2
-Tested up to: 6.7
-Stable tag: 1.3.7
+Tested up to: 6.8.1
+Stable tag: 1.3.8
 Requires PHP: 7.0
 License: GPL v3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -50,6 +50,10 @@ We also have a premium version of the plugin that has expanded functionality.
 </blockquote>
 
 == Changelog ==
+= 1.3.8 - 2025-06-23 =
+* Tested with WooCommerce 9.9.4, WordPress 6.8.1, WooCommerce subscription 7.6.0 and PHP version 8.2.
+* Redesigned the plugin settings page for improved usability and cleaner interface.
+
 = 1.3.7 - 2025-04-25 =
 * Tested with WooCommerce 9.8.2, WordPress 6.8, WooCommerce subscription 7.4.0 and PHP version 8.2.
 
