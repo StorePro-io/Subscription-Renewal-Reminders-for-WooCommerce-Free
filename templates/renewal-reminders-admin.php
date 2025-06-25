@@ -255,27 +255,27 @@ $charset_collate = $wpdb->get_charset_collate();
   <div class="screenshots">
     <div class="column">
       <div class="img-card">
-        <a href="<?php echo esc_url(plugin_dir_url(__FILE__)); ?>img/settings.webp"><img src="<?php echo esc_url(plugin_dir_url(__FILE__)); ?>img/settings.webp" /></a>
+        <a href="<?php echo esc_url(plugin_dir_url(__FILE__)); ?>img/setting.jpg"><img src="<?php echo esc_url(plugin_dir_url(__FILE__)); ?>img/setting.jpg" /></a>
       </div>
       <p style="text-align: center;font-size: 16px;font-weight: 600;color: #666565db;margin-top: 0 !important;"><?php echo esc_html__('Settings', 'subscriptions-renewal-reminders'); ?></p>
     </div>
     <div class="column">
       <div class="img-card">
-        <a href="<?php echo esc_url(plugin_dir_url(__FILE__)); ?>img/email-settings.webp"><img src="<?php echo esc_url(plugin_dir_url(__FILE__)); ?>img/email-settings.webp" /></a>
+        <a href="<?php echo esc_url(plugin_dir_url(__FILE__)); ?>img/email_setting_main.jpg"><img src="<?php echo esc_url(plugin_dir_url(__FILE__)); ?>img/email_setting_main.jpg" /></a>
       </div>
       <p style="text-align: center;font-size: 16px;font-weight: 600;color: #666565db;margin-top: 0 !important;"><?php echo esc_html__('Email Settings', 'subscriptions-renewal-reminders'); ?> </p>
     </div>
     <div class="column">
       <div class="img-card">
-        <a href="<?php echo esc_url(plugin_dir_url(__FILE__)); ?>img/test-email.png"><img src="<?php echo esc_url(plugin_dir_url(__FILE__)); ?>img/test-email.png" /></a>
+        <a href="<?php echo esc_url(plugin_dir_url(__FILE__)); ?>img/adminemailsettings.jpg"><img src="<?php echo esc_url(plugin_dir_url(__FILE__)); ?>img/adminemailsettings.jpg" /></a>
       </div>
-      <p style="text-align: center;font-size: 16px;font-weight: 600;color: #666565db;margin-top: 0 !important;"><?php echo esc_html__('Test Email', 'subscriptions-renewal-reminders'); ?> </p>
+      <p style="text-align: center;font-size: 16px;font-weight: 600;color: #666565db;margin-top: 0 !important;"><?php echo esc_html__('Admin Email Settings ', 'subscriptions-renewal-reminders'); ?> </p>
     </div>
     <div class="column">
       <div class="img-card">
-        <a href="<?php echo esc_url(plugin_dir_url(__FILE__)); ?>img/faq.png"><img src="<?php echo esc_url(plugin_dir_url(__FILE__)); ?>img/faq.png" /></a>
+        <a href="<?php echo esc_url(plugin_dir_url(__FILE__)); ?>img/testemail.jpg"><img src="<?php echo esc_url(plugin_dir_url(__FILE__)); ?>img/testemail.jpg" /></a>
       </div>
-      <p style="text-align: center;font-size: 16px;font-weight: 600;color: #666565db;margin-top: 0 !important;"><?php echo esc_html__('FAQ', 'subscriptions-renewal-reminders'); ?> </p>
+      <p style="text-align: center;font-size: 16px;font-weight: 600;color: #666565db;margin-top: 0 !important;"><?php echo esc_html__('Test Mail', 'subscriptions-renewal-reminders'); ?> </p>
     </div>
   </div>
   <div class="premium-features">
@@ -288,6 +288,8 @@ $charset_collate = $wpdb->get_charset_collate();
       <li><?php echo esc_html__('Additional shortcodes are included for email templates, such as the total amount, subscription link, and my account link.', 'subscriptions-renewal-reminders'); ?> </li>
       <li><?php echo esc_html__('An email test feature has been included.', 'subscriptions-renewal-reminders'); ?> </li>
       <li><?php echo esc_html__('Additional filters that allow you to expand the plugin’s functionality and customize email templates. You can also use these filters to modify the subscription period.', 'subscriptions-renewal-reminders'); ?></li>
+      <li><?php echo esc_html__('The ability to include a "Send Email to Admin" button in emails and modify the "From" email address and sender’s name for renewal reminder emails.', 'subscriptions-renewal-reminders'); ?></li>
+      <li><?php echo esc_html__('The option to add a "Cancel Subscription" button in emails, enabling subscribers to conveniently manage their subscriptions by canceling them directly from the email without visiting their account page.', 'subscriptions-renewal-reminders'); ?></li>
     </ul>
     <div class="button-upgrade"><a href="https://storepro.io/product/?add-to-cart=14883" target="_blank" style="color: #fff;text-decoration: none;font-weight: 600;"><?php echo esc_html__('Upgrade to Pro Version Now', 'subscriptions-renewal-reminders'); ?></a>
     </div>
