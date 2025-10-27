@@ -2,12 +2,13 @@
 Contributors: StorePro
 Tags: Subscription Renewal emails, Automated Reminders , Subscriptions , Renewal Reminders, subscription reminder emails
 Requires at least: 5.2
-Tested up to: 6.8.2
-Stable tag: 1.3.9
+Tested up to: 6.8.3
+Stable tag: 1.4.1
 Requires PHP: 7.0
 License: GPL v3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
+Send customizable renewal reminder emails X days before WooCommerce Subscriptions renew, with FTC-compliant click-to-cancel option.
 
 == Description ==
 ###Subscription Renewal Reminders for WooCommerce
@@ -47,9 +48,38 @@ We also have a premium version of the plugin that has expanded functionality.
 <p>👉<strong>Test Email</strong> -  An email test feature has been included. </p>
 <p>👉<strong>Filters</strong> - Additional filters that allow you to expand the plugin’s functionality and customize email templates. You can also use these filters to modify the subscription period.</p>
 <p>👉<strong>Admin Renewal Notifications</strong> - Added options to send renewal reminder emails to admins and customize the admin email template.</p>
+<p>👉<strong>Multi-Interval Reminders</strong> - Send multiple reminders per renewal cycle (e.g., 14 days and 3 days before) to boost engagement and reduce unexpected cancellations.</p>
 </blockquote>
 
+🔍 <strong>How Our Plugin Differs from WooCommerce Subscription Core Renewal Notices</strong>
+
+While WooCommerce core provides a basic renewal email system, Subscription Renewal Reminders for WooCommerce extends it with powerful customization, scheduling, and compliance features designed for real-world subscription management.
+
+✅ 1. Time-Based Scheduling (Advanced Control)
+WooCommerce’s core renewal system only allows scheduling reminders a set number of days before renewal. <strong>Our plugin goes further — letting you set both the number of days and the exact time</strong> renewal emails are sent. This added control ensures reminders reach customers at the most effective moment, improving engagement and predictability.
+
+✅ 2. Separate Admin & Customer Notifications
+While WooCommerce core sends the same generic renewal notice, <strong>our plugin supports independent templates for customers and administrators.</strong> Each can have its own subject line, content, and design — allowing you to communicate differently with your subscribers and your internal team.
+
+✅ 3. Admin CC Options
+WooCommerce’s renewal system doesn’t allow sending a copy of renewal emails to store managers or staff. <strong>Our plugin introduces CC options</strong>, enabling you to send automatic copies of every renewal reminder to selected admin email addresses — keeping your team fully informed of upcoming renewals.
+
+✅ 4. Customizable Email Templates
+Unlike the limited default WooCommerce email styling, <strong>our plugin includes a built-in WYSIWYG editor</strong> that lets you create branded, visually engaging renewal reminders. Add text, images, links, and shortcodes to reflect your brand’s personality and tone — providing a more professional communication experience.
+
+✅ 5. Click-to-Cancel Button (FTC Compliance)
+WooCommerce renewal notices do not include a cancellation option. <strong>Our plugin adds a “Cancel Subscription” button</strong> directly in the renewal reminder email, helping your store comply with <strong>FTC transparency and cancellation requirements.</strong> You can enable or disable the button and fully customize its text and styling.
+
+✅ 6. Multi-Interval Reminders
+WooCommerce’s default reminder system sends only one notice per renewal. <strong>Our plugin lets you send multiple reminders</strong> — for example, 14 days and 3 days before renewal — giving you more opportunities to engage with subscribers and reduce unexpected cancellations.
+
 == Changelog ==
+= 1.4.1 - 2025-10-27 =
+* Tested with WooCommerce 10.3.3.
+
+= 1.4.0 - 2025-10-10 =
+* Tested with WooCommerce 10.2.2, WordPress 6.8.3, WooCommerce subscription 7.9.0 and PHP version 8.2.
+
 = 1.3.9 - 2025-08-26 =
 * Tested with WooCommerce 10.1.1, WordPress 6.8.2, WooCommerce subscription 7.8.1 and PHP version 8.2.
 

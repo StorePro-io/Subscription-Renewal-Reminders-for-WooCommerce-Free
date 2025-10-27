@@ -256,25 +256,25 @@ $charset_collate = $wpdb->get_charset_collate();
       <div class="screenshots">
     <div class="column">
       <div class="img-card">
-        <a href="<?php echo esc_url(plugin_dir_url(__FILE__)); ?>img/setting.jpg"><img src="<?php echo esc_url(plugin_dir_url(__FILE__)); ?>img/setting.jpg" /></a>
+        <a href="<?php echo esc_url(plugin_dir_url(__FILE__)); ?>img/settings.webp"><img src="<?php echo esc_url(plugin_dir_url(__FILE__)); ?>img/settings.webp" /></a>
       </div>
       <p style="text-align: center;font-size: 16px;font-weight: 600;color: #666565db;margin-top: 0 !important;"><?php echo esc_html__('Settings', 'subscriptions-renewal-reminders'); ?></p>
     </div>
     <div class="column">
       <div class="img-card">
-        <a href="<?php echo esc_url(plugin_dir_url(__FILE__)); ?>img/email_setting_main.jpg"><img src="<?php echo esc_url(plugin_dir_url(__FILE__)); ?>img/email_setting_main.jpg" /></a>
+        <a href="<?php echo esc_url(plugin_dir_url(__FILE__)); ?>img/email-settings.webp"><img src="<?php echo esc_url(plugin_dir_url(__FILE__)); ?>img/email-settings.webp" /></a>
       </div>
       <p style="text-align: center;font-size: 16px;font-weight: 600;color: #666565db;margin-top: 0 !important;"><?php echo esc_html__('Email Settings', 'subscriptions-renewal-reminders'); ?> </p>
     </div>
     <div class="column">
       <div class="img-card">
-        <a href="<?php echo esc_url(plugin_dir_url(__FILE__)); ?>img/adminemailsettings.jpg"><img src="<?php echo esc_url(plugin_dir_url(__FILE__)); ?>img/adminemailsettings.jpg" /></a>
+        <a href="<?php echo esc_url(plugin_dir_url(__FILE__)); ?>img/admin-email-settings.webp"><img src="<?php echo esc_url(plugin_dir_url(__FILE__)); ?>img/admin-email-settings.webp" /></a>
       </div>
       <p style="text-align: center;font-size: 16px;font-weight: 600;color: #666565db;margin-top: 0 !important;"><?php echo esc_html__('Admin Email Settings ', 'subscriptions-renewal-reminders'); ?> </p>
     </div>
     <div class="column">
       <div class="img-card">
-        <a href="<?php echo esc_url(plugin_dir_url(__FILE__)); ?>img/testemail.jpg"><img src="<?php echo esc_url(plugin_dir_url(__FILE__)); ?>img/testemail.jpg" /></a>
+        <a href="<?php echo esc_url(plugin_dir_url(__FILE__)); ?>img/test-email.webp"><img src="<?php echo esc_url(plugin_dir_url(__FILE__)); ?>img/test-email.webp" /></a>
       </div>
       <p style="text-align: center;font-size: 16px;font-weight: 600;color: #666565db;margin-top: 0 !important;"><?php echo esc_html__('Test Mail', 'subscriptions-renewal-reminders'); ?> </p>
     </div>
@@ -282,6 +282,7 @@ $charset_collate = $wpdb->get_charset_collate();
   <div class="premium-features">
     <p><?php echo esc_html__('PRO Features:', 'subscriptions-renewal-reminders'); ?></p>
     <ul>
+      <li><?php echo esc_html__('Multi-Interval Reminders: Send multiple renewal reminders (e.g., 14 days and 3 days before renewal) to boost engagement and reduce unexpected cancellations.', 'subscriptions-renewal-reminders'); ?> </li>
       <li><?php echo esc_html__('Compatibility with synchronized subscriptions.', 'subscriptions-renewal-reminders'); ?> </li>
       <li><?php echo esc_html__('The ability to choose the type of subscription period renewal reminder emails are sent to. This is useful for websites with mixed subscription periods, as you can avoid sending renewal reminders for subscriptions that don’t actually need them.', 'subscriptions-renewal-reminders'); ?> </li>
       <li><?php echo esc_html__('Renewal period can be chosen from the available options which is daily, weekly, monthly or yearly.', 'subscriptions-renewal-reminders'); ?> </li>
