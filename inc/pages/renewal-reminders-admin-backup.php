@@ -78,11 +78,6 @@ class SPRRAdmin
 			),
 			array(
 				'option_group' => 'storepro_options_group',
-				'option_name' => 'sprr_selected_template',
-				'sanitize_callback' => 'sanitize_text_field'
-			),
-			array(
-				'option_group' => 'storepro_options_group',
 				'option_name' => 'email_subject',
 				'sanitize_callback' => 'sanitize_text_field'
 			),
@@ -177,18 +172,30 @@ class SPRRAdmin
 				)
 			),
 			array(
-				'id' => 'sprr_selected_template',
-				'title' =>__('Email Template', 'subscriptions-renewal-reminders'),
-				'callback' => array( $this->callbacks, 'sprr_templateSelector' ),
+				'id' => 'email_subject',
+				'title' =>__('Email Subject', 'subscriptions-renewal-reminders'),
+				'callback' => array( $this->callbacks, 'sprr_storeproSubject' ),
 				'page' => 'storepro_plugin',
 				'section' => 'storepro_admin_index_section_2',
 				'args' => array(
-					'label_for' => 'sprr_selected_template',
+					'label_for' => 'email_subject',
 					'class' => 'example-class'
 				)
 			),
+			array(
+				'id' => 'email_content',
+				'title' => __('Email Content', 'subscriptions-renewal-reminders'),
+				'callback' => array( $this->callbacks, 'sprr_storeproEmaiContent' ),
+				'page' => 'storepro_plugin',
+				'section' => 'storepro_admin_index_section_2',
+				'args' => array(
+					'label_for' => 'email_content',
+					'class' => 'example-class'
+				)
+				),
 				array(
 					'id' => 'sprr_cancel_button_enabled',
+					// 'title' => 'Enable Click To Cancel Button :',
 					'title' => __('Enable Click To Cancel Button', 'subscriptions-renewal-reminders'),
 					'callback' => array($this->callbacks, 'sprr_cancelButtonEnabled'),
 					'page' => 'storepro_plugin',
@@ -200,6 +207,7 @@ class SPRRAdmin
 				),
 				array(
 					'id' => 'sprr_cancel_button_text',
+					'title' => 'Cancel Button Text:',
 					'title' => __('Cancel Button Text', 'subscriptions-renewal-reminders'),
 					'callback' => array($this->callbacks, 'sprr_cancelButtonText'),
 					'page' => 'storepro_plugin',
@@ -214,47 +222,4 @@ class SPRRAdmin
 		$this->settings->sprr_setFields( $args );
 	}
 
-	public function sprr_setMarketingSections()
-	{
-		$args = array(
-			array(
-				'id' => 'sprr_marketing_section',
-				'title' => esc_html__('Win-Back Email Template', 'subscriptions-renewal-reminders'),
-				'callback' => array( $this->callbacks, 'sprr_marketingSection' ),
-				'page' => 'sprr_marketing_settings'
-			)
-		);
-
-		$this->settings->sprr_setSections( $args );
-	}
-
-	public function sprr_setMarketingFields()
-	{
-		$args = array(
-			array(
-				'id' => 'sprr_winback_email_subject',
-				'title' => __('Email Subject', 'subscriptions-renewal-reminders'),
-				'callback' => array( $this->callbacks, 'sprr_winbackSubject' ),
-				'page' => 'sprr_marketing_settings',
-				'section' => 'sprr_marketing_section',
-				'args' => array(
-					'label_for' => 'sprr_winback_email_subject',
-					'class' => 'example-class'
-				)
-			),
-			array(
-				'id' => 'sprr_winback_email_content',
-				'title' => __('Email Content', 'subscriptions-renewal-reminders'),
-				'callback' => array( $this->callbacks, 'sprr_winbackContent' ),
-				'page' => 'sprr_marketing_settings',
-				'section' => 'sprr_marketing_section',
-				'args' => array(
-					'label_for' => 'sprr_winback_email_content',
-					'class' => 'example-class'
-				)
-			)
-		);
-
-		$this->settings->sprr_setFields( $args );
-	}
 }

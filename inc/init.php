@@ -12,6 +12,7 @@ require SPRR_PLUGIN_DIR . 'inc/base/renewal-reminders-enqueue.php';
 require SPRR_PLUGIN_DIR . 'inc/base/renewal-reminders-settings-links.php';
 require SPRR_PLUGIN_DIR . 'inc/base/renewal-reminders-table-operations.php';
 require SPRR_PLUGIN_DIR . 'inc/base/renewal-reminders-send-notifications.php';
+require SPRR_PLUGIN_DIR . 'inc/base/renewal-reminders-marketing.php';
 
 
 
@@ -41,6 +42,9 @@ final class SPRRInit
 
 		$SendNotifications = new SPRRSendNotifications;  
 		$SendNotifications->sprr_send_notifications();
+
+		$Marketing = new SPRRMarketing;  
+		$Marketing->sprr_register();
 
 	}
 

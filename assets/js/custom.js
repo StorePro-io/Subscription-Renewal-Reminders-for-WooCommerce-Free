@@ -227,6 +227,8 @@ jQuery(document).ready(function($) {
 
 //code for disable tab buttons if not sync first!    
 jQuery(document).ready(function($) {
+    // Navigation tabs are now always active
+    /*
     if (window.location.href.indexOf("&tab=") == -1) {
         $(".nav-tab").click(function(e) {
             e.preventDefault();
@@ -253,6 +255,7 @@ jQuery(document).ready(function($) {
             `)
             .appendTo('head');
     }
+    */
 });
 
 //code for customtooltip with improved animations

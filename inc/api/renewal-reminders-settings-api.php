@@ -68,9 +68,45 @@ class SPRRSettingsApi
                 null // No callback function is provided
             );
 
+            // Add a submenu for Marketing
+            add_submenu_page(
+                $page['menu_slug'],
+                esc_html__('Marketing', 'subscriptions-renewal-reminders'),
+                esc_html__('Marketing', 'subscriptions-renewal-reminders'),
+                $page['capability'],
+                'sp-renewal-reminders-marketing',
+                array($this, 'sprr_marketing_page_callback')
+            );
+
+            // Add a submenu for Templates
+            add_submenu_page(
+                $page['menu_slug'],
+                esc_html__('Templates', 'subscriptions-renewal-reminders'),
+                esc_html__('Templates', 'subscriptions-renewal-reminders'),
+                $page['capability'],
+                'sp-renewal-reminders-templates',
+                array($this, 'sprr_templates_page_callback')
+            );
+
             // Add a submenu for the "Upgrade" section
             add_submenu_page($page['menu_slug'],esc_html__('Upgrade', 'subscriptions-renewal-reminders'),  esc_html__('Upgrade to Pro', 'subscriptions-renewal-reminders'), $page['capability'], 'upgrade', array($this, 'sprr_upgrade_page_callback'));
         }
+    }
+
+    /**
+     * Callback function for Marketing page
+     */
+    public function sprr_marketing_page_callback()
+    {
+        require SPRR_PLUGIN_DIR . 'templates/renewal-reminders-marketing.php';
+    }
+
+    /**
+     * Callback function for Templates page
+     */
+    public function sprr_templates_page_callback()
+    {
+        require SPRR_PLUGIN_DIR . 'templates/renewal-reminders-templates.php';
     }
 
     /**
@@ -88,7 +124,7 @@ class SPRRSettingsApi
      */
     public function admin_menu_styles()
     {
-        $styles = '#toplevel_page_sp-renewal-reminders > ul > li:nth-child(3) > a{background-color: #fbb03b !important; color: #0c3c74 !important; font-weight: 600 !important;}';
+        $styles = '#toplevel_page_sp-renewal-reminders > ul > li:nth-child(5) > a{background-color: #fbb03b !important; color: #0c3c74 !important; font-weight: 600 !important;}';
 
         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         printf('<style>%s</style>', $styles);
@@ -102,7 +138,7 @@ class SPRRSettingsApi
      */
     public function sprr_setSettings(array $settings)
     {
-        $this->settings = $settings;
+        $this->settings = array_merge($this->settings, $settings);
         return $this;
     }
 
@@ -114,7 +150,7 @@ class SPRRSettingsApi
      */
     public function sprr_setSections(array $sections)
     {
-        $this->sections = $sections;
+        $this->sections = array_merge($this->sections, $sections);
         return $this;
     }
 
@@ -126,7 +162,7 @@ class SPRRSettingsApi
      */
     public function sprr_setFields(array $fields)
     {
-        $this->fields = $fields;
+        $this->fields = array_merge($this->fields, $fields);
         return $this;
     }
 
