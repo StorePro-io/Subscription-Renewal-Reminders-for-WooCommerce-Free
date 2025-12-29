@@ -3,7 +3,7 @@ Contributors: StorePro
 Tags: Subscription Renewal emails, Automated Reminders , Subscriptions , Renewal Reminders, subscription reminder emails
 Requires at least: 5.2
 Tested up to: 6.8.3
-Stable tag: 1.4.1
+Stable tag: 1.4.3
 Requires PHP: 7.0
 License: GPL v3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html

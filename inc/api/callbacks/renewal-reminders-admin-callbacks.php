@@ -251,4 +251,188 @@ class SPRRAdminCallbacks
 
 <?php
 	}
+
+	public function sprr_marketingSection()
+	{
+?>
+		<p class="renew-admin_captionsp"><?php esc_html_e('Configure the email template for win-back campaigns sent to cancelled subscription customers.', 'subscriptions-renewal-reminders'); ?></p>
+<?php
+	}
+
+	public function sprr_winbackSubject()
+	{
+?>
+		<table>
+			<tr>
+				<td>
+					<div class="adm-tooltip-renew-rem" data-tooltip="<?php echo esc_attr__('Subject line for win-back emails', 'subscriptions-renewal-reminders'); ?>"> ? </div>
+				</td>
+				<td>
+					<input class="renew-admin_email_subj" type="text" class="regular-text" name="sprr_winback_email_subject" 
+						value="<?php echo esc_attr(stripslashes_deep(get_option('sprr_winback_email_subject', __('We Miss You! Special Offer Inside', 'subscriptions-renewal-reminders')))); ?>" 
+						placeholder="<?php echo esc_attr__('We Miss You! Special Offer Inside', 'subscriptions-renewal-reminders'); ?>">
+				</td>
+			</tr>
+		</table>
+<?php
+	}
+
+	public function sprr_winbackContent()
+	{
+?>
+		<table>
+			<tr>
+				<td>
+					<div class="adm-tooltip-renew-rem" data-tooltip="<?php echo esc_attr__('Available placeholders: {first_name}, {last_name}, {subscription_link}', 'subscriptions-renewal-reminders'); ?>"> ? </div>
+				</td>
+				<td>
+					<?php
+					$default_content = stripslashes_deep(get_option('sprr_winback_email_content', ''));
+					$editor_id = 'sprr_winback_content_editor';
+					$arg = array(
+						'textarea_name' => 'sprr_winback_email_content',
+						'media_buttons' => true,
+						'textarea_rows' => 10,
+						'quicktags' => true,
+						'wpautop' => false,
+						'teeny' => true
+					);
+
+					$blank_content = __("Hi {first_name} {last_name},\n\nWe noticed your subscription has ended and we'd love to have you back!\n\nAs a valued customer, we're offering you an exclusive discount to reactivate your subscription.\n\nClick below to view your subscription and restart anytime:\n{subscription_link}\n\nWe hope to see you again soon!\n\nBest regards,\nThe Team", 'subscriptions-renewal-reminders');
+
+					if (empty($default_content)) {
+						$default_content = $blank_content;
+					}
+
+					wp_editor($default_content, $editor_id, $arg);
+					?>
+
+					<p style="margin-top:3px;"><strong><?php esc_html_e('Note:', 'subscriptions-renewal-reminders'); ?></strong></p>
+					<ul style="margin-top:4px; font-size:12px;">
+						<li>&#9830; <?php esc_html_e('Use {first_name} and {last_name} for customer name', 'subscriptions-renewal-reminders'); ?></li>
+						<li>&#9830; <?php esc_html_e('Use {subscription_link} to add a link to their subscription', 'subscriptions-renewal-reminders'); ?></li>
+						<li>&#9830; <?php esc_html_e('This email will be sent to customers with cancelled or expired subscriptions', 'subscriptions-renewal-reminders'); ?></li>
+					</ul>
+				</td>
+			</tr>
+		</table>
+<?php
+	}
+
+	public function sprr_templateSelector()
+	{
+		// Migrate existing email_subject and email_content to default template if not already done
+		$this->sprr_migrateToTemplateSystem();
+
+		$selected_template = get_option('sprr_selected_template', 'default_template');
+		$custom_templates = get_option('sprr_custom_templates', array());
+
+		?>
+		<table>
+			<tr>
+				<td>
+					<div class="adm-tooltip-renew-rem" data-tooltip="<?php echo esc_attr__('Select the email template for renewal reminders', 'subscriptions-renewal-reminders'); ?>"> ? </div>
+				</td>
+				<td>
+					<select name="sprr_selected_template" id="sprr_selected_template" style="min-width: 300px; padding: 8px;">
+						<option value="default_template" <?php selected($selected_template, 'default_template'); ?>>
+							<?php esc_html_e('Default Template', 'subscriptions-renewal-reminders'); ?>
+						</option>
+						<?php foreach ($custom_templates as $template_id => $template): ?>
+							<option value="<?php echo esc_attr($template_id); ?>" <?php selected($selected_template, $template_id); ?>>
+								<?php echo esc_html($template['name']); ?>
+							</option>
+						<?php endforeach; ?>
+					</select>
+					<a href="<?php echo admin_url('admin.php?page=sp-renewal-reminders-templates&template_tab=builder'); ?>" class="button" style="margin-left: 10px;">
+						<span class="dashicons dashicons-plus-alt" style="margin-top: 3px;"></span>
+						<?php esc_html_e('Create New Template', 'subscriptions-renewal-reminders'); ?>
+					</a>
+					<a href="<?php echo admin_url('admin.php?page=sp-renewal-reminders-templates'); ?>" class="button" style="margin-left: 5px;">
+						<?php esc_html_e('Manage Templates', 'subscriptions-renewal-reminders'); ?>
+					</a>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<div id="sprr-template-preview" style="margin-top: 20px; padding: 15px; background: #f9f9f9; border: 1px solid #ddd; border-radius: 4px; display: none;">
+						<h4 style="margin-top: 0;"><?php esc_html_e('Template Preview:', 'subscriptions-renewal-reminders'); ?></h4>
+						<div id="sprr-template-preview-content"></div>
+					</div>
+					<p style="margin-top: 15px; font-size: 12px; color: #666; font-style: italic;">
+						<span class="dashicons dashicons-info" style="font-size: 14px; vertical-align: middle;"></span>
+						<?php esc_html_e('Template customization has been moved to the new Templates menu. Use the buttons above to create or manage your email templates.', 'subscriptions-renewal-reminders'); ?>
+					</p>
+				</td>
+			</tr>
+		</table>
+
+		<script>
+		jQuery(document).ready(function($) {
+			var templates = <?php echo json_encode($custom_templates); ?>;
+
+			function showTemplatePreview() {
+				var selectedId = $('#sprr_selected_template').val();
+				if (templates[selectedId]) {
+					var template = templates[selectedId];
+					var previewHtml = '<p><strong><?php esc_html_e('Subject:', 'subscriptions-renewal-reminders'); ?></strong> ' + (template.subject || '') + '</p>';
+					previewHtml += '<div style="background: #fff; padding: 15px; margin-top: 10px; max-height: 300px; overflow-y: auto;">' + (template.content || '') + '</div>';
+					$('#sprr-template-preview-content').html(previewHtml);
+					$('#sprr-template-preview').slideDown();
+				} else {
+					$('#sprr-template-preview').slideUp();
+				}
+			}
+
+			$('#sprr_selected_template').on('change', showTemplatePreview);
+			
+			// Show preview on page load if template is selected
+			if ($('#sprr_selected_template').val()) {
+				showTemplatePreview();
+			}
+		});
+		</script>
+		<?php
+	}
+
+	private function sprr_migrateToTemplateSystem()
+	{
+		// Check if migration has already been done
+		if (get_option('sprr_template_migration_done', false)) {
+			return;
+		}
+
+		$existing_subject = get_option('email_subject', '');
+		$existing_content = get_option('email_content', '');
+
+		// Only create default template if there's existing data
+		if (!empty($existing_subject) || !empty($existing_content)) {
+			$custom_templates = get_option('sprr_custom_templates', array());
+			
+			// Create default template from existing settings
+			$default_template_id = 'default_template';
+			
+			if (!isset($custom_templates[$default_template_id])) {
+				$custom_templates[$default_template_id] = array(
+					'id' => $default_template_id,
+					'name' => __('Default Template', 'subscriptions-renewal-reminders'),
+					'subject' => $existing_subject,
+					'content' => $existing_content,
+					'created' => current_time('mysql'),
+					'modified' => current_time('mysql'),
+				);
+				
+				update_option('sprr_custom_templates', $custom_templates);
+			}
+			
+			// Set the default template as selected
+			if (!get_option('sprr_selected_template')) {
+				update_option('sprr_selected_template', $default_template_id);
+			}
+		}
+
+		// Mark migration as done
+		update_option('sprr_template_migration_done', true);
+	}
 }
+

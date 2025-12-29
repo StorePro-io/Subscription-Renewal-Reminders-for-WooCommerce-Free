@@ -3,7 +3,7 @@
 
 
 //Get the active tab from the $_GET param
-$default_tab = null;
+$default_tab = 'settings';
 
 //Get sanitization
 global $pagenow;
@@ -12,7 +12,7 @@ $sp_tab = "";
 if (isset($_GET['tab'])) {
   $sp_tab = filter_input(INPUT_POST | INPUT_GET, 'tab', FILTER_SANITIZE_SPECIAL_CHARS);
 }
-$tab = isset($sp_tab) ? $sp_tab : $default_tab;
+$tab = isset($sp_tab) && !empty($sp_tab) ? $sp_tab : $default_tab;
 
 
 
@@ -218,8 +218,8 @@ $charset_collate = $wpdb->get_charset_collate();
 
             <div class="renew-text">
               <div style="background: rgba(102, 126, 234, 0.1); padding: 15px; border-radius: 8px; border-left: 4px solid #667eea;">
-                <strong>📝 <?php echo esc_html__('Note:', 'subscriptions-renewal-reminders'); ?></strong><br>
-                <?php echo esc_html__('You can access the Settings tab once the data synchronization is completed. This process will import all your existing subscription data and set up the reminder system.', 'subscriptions-renewal-reminders'); ?>
+                <strong>💡 <?php echo esc_html__('Quick Start:', 'subscriptions-renewal-reminders'); ?></strong><br>
+                <?php echo esc_html__('Click the button above to import your existing subscriptions. You can also configure your email templates and settings at any time using the tabs above.', 'subscriptions-renewal-reminders'); ?>
               </div>
             </div>
           </div>
