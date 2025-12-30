@@ -398,6 +398,17 @@ div#wpfooter {
 }
 
 /* Improve manual sync styling */
+/* Upgrade to Pro buttons unified styling */
+.sprr-upgrade-btn {
+    background-color: #fbb03b !important;
+    color: #0c3c74 !important;
+    border-color: #f0aa2f !important;
+    font-weight: 700 !important;
+}
+.sprr-upgrade-btn:hover {
+    background-color: #ffc657 !important;
+    color: #0c3c74 !important;
+}
 .renewal-reminder-plugin .tab-content-inner .renew-rem-progress {
     min-height: 0; /* Remove fixed height to prevent unwanted space */
     margin: 0; /* Remove default margins */

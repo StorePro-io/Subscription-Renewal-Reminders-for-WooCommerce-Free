@@ -91,7 +91,7 @@ foreach ($subscriptions as $subscription) {
 }
 ?>
 
-<div class="wrap renewal-reminders-marketing">
+<div class="wrap renewal-reminders-marketing renewal-reminder-plugin">
     <!-- Print the page title with enhanced styling -->
     <div style="text-align: center; margin: 30px 0;">
         <h1 class="renew-rem-makin-title"> 
@@ -457,7 +457,8 @@ jQuery(document).ready(function($) {
             return;
         }
         
-        if (!confirm('<?php echo esc_js(__('Send win-back email to ' + selectedSubscribers.length + ' selected subscriber(s)?', 'subscriptions-renewal-reminders')); ?>'.replace(selectedSubscribers.length, selectedSubscribers.length))) {
+        var confirmMessage = '<?php echo esc_js(__('Send win-back email to %d selected subscriber(s)?', 'subscriptions-renewal-reminders')); ?>'.replace('%d', selectedSubscribers.length);
+        if (!confirm(confirmMessage)) {
             return;
         }
         

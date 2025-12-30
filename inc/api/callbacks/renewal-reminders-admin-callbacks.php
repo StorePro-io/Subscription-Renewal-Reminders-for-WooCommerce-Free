@@ -344,7 +344,7 @@ class SPRRAdminCallbacks
 							</option>
 						<?php endforeach; ?>
 					</select>
-				
+
 					<a href="<?php echo admin_url('admin.php?page=sp-renewal-reminders-templates'); ?>" class="button" style="margin-left: 5px;">
 						<?php esc_html_e('Manage Templates', 'subscriptions-renewal-reminders'); ?>
 					</a>
@@ -366,14 +366,37 @@ class SPRRAdminCallbacks
 
 		<script>
 		jQuery(document).ready(function($) {
-			var templates = <?php echo json_encode($custom_templates); ?>;
+			var templates = <?php echo wp_json_encode($custom_templates); ?>;
+			// Fallback to current subject/content for Default Template preview
+			var defaultTemplate = <?php 
+				$default_subject = stripslashes_deep(get_option('email_subject', get_email_subject_default_value()));
+				$default_content = stripslashes_deep(get_option('email_content', ''));
+				if (empty($default_content)) { $default_content = get_blank_content_reminder_text(); }
+				$processed_content = $default_content;
+				// Only apply wpautop if content has no HTML tags (plain text)
+				if ($processed_content === wp_strip_all_tags($processed_content)) {
+					$processed_content = wpautop($processed_content);
+				}
+				echo wp_json_encode(array('subject' => $default_subject, 'content' => $processed_content));
+			?>;
 
 			function showTemplatePreview() {
 				var selectedId = $('#sprr_selected_template').val();
-				if (templates[selectedId]) {
-					var template = templates[selectedId];
+				var template = null;
+				if (selectedId === 'default_template') {
+					template = defaultTemplate;
+				} else if (templates[selectedId]) {
+					template = templates[selectedId];
+				}
+
+				if (template) {
 					var previewHtml = '<p><strong><?php esc_html_e('Subject:', 'subscriptions-renewal-reminders'); ?></strong> ' + (template.subject || '') + '</p>';
-					previewHtml += '<div style="background: #fff; padding: 15px; margin-top: 10px; max-height: 300px; overflow-y: auto;">' + (template.content || '') + '</div>';
+					var contentHtml = (template.content || '');
+					// If content appears to be plain text (no HTML tags), convert newlines to <br>
+					if (!/<[a-z][\s\S]*>/i.test(contentHtml)) {
+						contentHtml = contentHtml.replace(/\n/g, '<br>');
+					}
+					previewHtml += '<div style="background: #fff; padding: 15px; margin-top: 10px; max-height: 300px; overflow-y: auto;">' + contentHtml + '</div>';
 					$('#sprr-template-preview-content').html(previewHtml);
 					$('#sprr-template-preview').slideDown();
 				} else {

@@ -103,7 +103,7 @@ $charset_collate = $wpdb->get_charset_collate();
   <!-- Print the page title with enhanced styling -->
   <div style="text-align: center; margin: 30px 0;">
     <h1 class="renew-rem-makin-title"> 
-      <?php echo esc_html__('🔄 Subscriptions Renewal Reminders', 'subscriptions-renewal-reminders'); ?>
+      <?php echo esc_html__('Subscriptions Renewal Reminders', 'subscriptions-renewal-reminders'); ?>
     </h1>
     <p class="renew-rem-subtitle">
       <?php echo esc_html__('Automate your subscription renewal notifications with ease', 'subscriptions-renewal-reminders'); ?>
@@ -154,6 +154,12 @@ $charset_collate = $wpdb->get_charset_collate();
       <a href="?page=sp-renewal-reminders&tab=sync" class="nav-tab <?php if ($tab === 'sync'): ?>nav-tab-active<?php endif; ?>">
           🔄 <?php echo esc_html__('Sync', 'subscriptions-renewal-reminders'); ?>
       </a>
+      <a href="?page=sp-renewal-reminders&tab=testing" class="nav-tab <?php if ($tab === 'testing'): ?>nav-tab-active<?php endif; ?>">
+        🧪 <?php echo esc_html__('Email Testing', 'subscriptions-renewal-reminders'); ?>
+      </a>
+      <a href="?page=sp-renewal-reminders&tab=history" class="nav-tab <?php if ($tab === 'history'): ?>nav-tab-active<?php endif; ?>">
+        🧾 <?php echo esc_html__('Email History', 'subscriptions-renewal-reminders'); ?>
+      </a>
   </nav>
 
   <div class="renew-rem-tab-content">
@@ -189,6 +195,160 @@ $charset_collate = $wpdb->get_charset_collate();
           </div>
         </div>
         <?php
+        break;
+
+      case 'testing':
+      ?>
+        <div class="tab-content-inner" style="padding-bottom: 48px;">
+          <div class="re-compare-bar-tabs-sync">
+            <h3 style="color: #2c3e50; margin-bottom: 10px;">🧪 Email Testing</h3>
+            <p><?php echo esc_html__('Trigger today\'s renewal reminder emails immediately to verify sending works as expected.', 'subscriptions-renewal-reminders'); ?></p>
+          </div>
+          <?php 
+            $testing_enabled = (function_exists('sprr_is_premium_active') && sprr_is_premium_active());
+            if (!$testing_enabled) {
+              // Allow temporary override via constant, filter, or option
+              $const_enabled = defined('SPRR_TESTING_ENABLED') ? (bool) constant('SPRR_TESTING_ENABLED') : false;
+              $testing_enabled = $const_enabled
+                                || (bool) apply_filters('sprr_testing_enabled', false)
+                                || (bool) get_option('sprr_testing_enabled', false);
+            }
+          ?>
+          <?php if ($testing_enabled): ?>
+            <div>
+              <button class="button" id="sprr-send-renewals-now" style="font-size: 14px;">
+                ✉️ <?php echo esc_html__('Send Renewal Emails Now', 'subscriptions-renewal-reminders'); ?>
+              </button>
+              <span id="sprr-send-result" style="margin-left: 10px; color: #555;"></span>
+            </div>
+            <script>
+              jQuery(document).ready(function($){
+                $('#sprr-send-renewals-now').on('click', function(){
+                  var $btn = $(this);
+                  $btn.prop('disabled', true).text('Sending...');
+                  $('#sprr-send-result').text('');
+                  $.post(ajaxurl, {
+                    action: 'sprr_run_renewal_sends_now',
+                    nonce: '<?php echo wp_create_nonce('sprr_run_now'); ?>'
+                  }).done(function(resp){
+                    if (resp && resp.success) {
+                      var sent = resp.data.sent || 0;
+                      var failed = resp.data.failed || 0;
+                      $('#sprr-send-result').text('Sent: ' + sent + ' • Failed: ' + failed);
+                    } else {
+                      $('#sprr-send-result').text('Error: ' + (resp && resp.data ? resp.data : 'Unknown error'));
+                    }
+                  }).fail(function(){
+                    $('#sprr-send-result').text('Network error while sending.');
+                  }).always(function(){
+                    $btn.prop('disabled', false).text('✉️ <?php echo esc_js(__('Send Renewal Emails Now', 'subscriptions-renewal-reminders')); ?>');
+                  });
+                });
+              });
+            </script>
+          <?php else: ?>
+            <div style="position: relative;">
+              <div style="filter: blur(3px); pointer-events: none;">
+                <div>
+                  <button class="button" style="font-size: 14px;" disabled>
+                    ✉️ <?php echo esc_html__('Send Renewal Emails Now', 'subscriptions-renewal-reminders'); ?>
+                  </button>
+                  <span style="margin-left: 10px; color: #555;">Sent: 0 • Failed: 0</span>
+                </div>
+              </div>
+              <div style="position: absolute; inset: 0; display:flex; align-items:center; justify-content:center;">
+                <div style="background:#fff; border:1px solid #ddd; border-radius:8px; padding:16px 20px; box-shadow:0 2px 8px rgba(0,0,0,0.08); text-align:center; max-width: 520px;">
+                  <h4 style="margin:0 0 8px;">Email Testing is a Pro feature</h4>
+                  <p style="margin:0 0 12px; color:#555;">Upgrade to run tests instantly and verify deliverability.</p>
+                  <a href="https://storepro.io/subscription-renewal-premium/" target="_blank" class="button button-primary sprr-upgrade-btn">Upgrade to Pro</a>
+                </div>
+              </div>
+            </div>
+          <?php endif; ?>
+        </div>
+      <?php
+        break;
+
+      case 'history':
+      ?>
+        <div class="tab-content-inner">
+          <h3 style="color:#2c3e50; margin-bottom: 15px;"><?php echo esc_html__('Email History', 'subscriptions-renewal-reminders'); ?></h3>
+          <?php if (function_exists('sprr_is_premium_active') && sprr_is_premium_active()): ?>
+            <?php $history = get_option('sprr_email_history', array()); ?>
+            <?php if (empty($history)): ?>
+              <div style="text-align:center; padding:40px; color:#666; background:#fff; border:1px solid #ddd; border-radius:6px;">
+                <span class="dashicons dashicons-email" style="font-size:48px; opacity:0.3;"></span>
+                <p style="font-size:16px; margin-top:10px;"><?php echo esc_html__('No email history found yet.', 'subscriptions-renewal-reminders'); ?></p>
+              </div>
+            <?php else: ?>
+              <table class="wp-list-table widefat fixed striped">
+                <thead>
+                  <tr>
+                    <th><?php echo esc_html__('Date', 'subscriptions-renewal-reminders'); ?></th>
+                    <th><?php echo esc_html__('Type', 'subscriptions-renewal-reminders'); ?></th>
+                    <th><?php echo esc_html__('Subject', 'subscriptions-renewal-reminders'); ?></th>
+                    <th><?php echo esc_html__('Template', 'subscriptions-renewal-reminders'); ?></th>
+                    <th><?php echo esc_html__('Sent', 'subscriptions-renewal-reminders'); ?></th>
+                    <th><?php echo esc_html__('Failed', 'subscriptions-renewal-reminders'); ?></th>
+                    <th><?php echo esc_html__('Retained', 'subscriptions-renewal-reminders'); ?></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php foreach (array_reverse($history) as $item): ?>
+                    <tr>
+                      <td><?php echo esc_html(date('M j, Y H:i', strtotime($item['timestamp']))); ?></td>
+                      <td><?php echo esc_html(ucfirst($item['type'])); ?></td>
+                      <td><?php echo esc_html($item['subject']); ?></td>
+                      <td><?php echo esc_html($item['template']); ?></td>
+                      <td><?php echo isset($item['sent']) ? intval($item['sent']) : 0; ?></td>
+                      <td><?php echo isset($item['failed']) ? intval($item['failed']) : 0; ?></td>
+                      <td><?php echo isset($item['retained']) ? intval($item['retained']) : 0; ?></td>
+                    </tr>
+                  <?php endforeach; ?>
+                </tbody>
+              </table>
+            <?php endif; ?>
+          <?php else: ?>
+            <div style="position: relative;">
+              <div style="filter: blur(3px); pointer-events: none;">
+                <table class="wp-list-table widefat fixed striped">
+                  <thead>
+                    <tr>
+                      <th><?php echo esc_html__('Date', 'subscriptions-renewal-reminders'); ?></th>
+                      <th><?php echo esc_html__('Type', 'subscriptions-renewal-reminders'); ?></th>
+                      <th><?php echo esc_html__('Subject', 'subscriptions-renewal-reminders'); ?></th>
+                      <th><?php echo esc_html__('Template', 'subscriptions-renewal-reminders'); ?></th>
+                      <th><?php echo esc_html__('Sent', 'subscriptions-renewal-reminders'); ?></th>
+                      <th><?php echo esc_html__('Failed', 'subscriptions-renewal-reminders'); ?></th>
+                      <th><?php echo esc_html__('Retained', 'subscriptions-renewal-reminders'); ?></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php for ($i=0; $i<5; $i++): ?>
+                      <tr>
+                        <td><?php echo esc_html(date('M j, Y H:i', current_time('timestamp') - ($i*3600))); ?></td>
+                        <td>Renewal</td>
+                        <td>Heads up: Your renewal is near</td>
+                        <td>Modern Hero</td>
+                        <td><?php echo 10 - $i; ?></td>
+                        <td><?php echo $i % 2; ?></td>
+                        <td><?php echo $i; ?></td>
+                      </tr>
+                    <?php endfor; ?>
+                  </tbody>
+                </table>
+              </div>
+              <div style="position: absolute; inset: 0; display:flex; align-items:center; justify-content:center;">
+                <div style="background:#fff; border:1px solid #ddd; border-radius:8px; padding:16px 20px; box-shadow:0 2px 8px rgba(0,0,0,0.08); text-align:center; max-width: 480px;">
+                  <h4 style="margin:0 0 8px;">Email History is a Pro feature</h4>
+                  <p style="margin:0 0 12px; color:#555;">Upgrade to view detailed email send logs, retention metrics, and performance insights.</p>
+                  <a href="https://storepro.io/subscription-renewal-premium/" target="_blank" class="button button-primary sprr-upgrade-btn">Upgrade to Pro</a>
+                </div>
+              </div>
+            </div>
+          <?php endif; ?>
+        </div>
+      <?php
         break;
 
       default:
@@ -293,7 +453,7 @@ $charset_collate = $wpdb->get_charset_collate();
       <li><?php echo esc_html__('The ability to include a "Send Email to Admin" button in emails and modify the "From" email address and sender’s name for renewal reminder emails.', 'subscriptions-renewal-reminders'); ?></li>
       <li><?php echo esc_html__('The option to add a "Cancel Subscription" button in emails, enabling subscribers to conveniently manage their subscriptions by canceling them directly from the email without visiting their account page.', 'subscriptions-renewal-reminders'); ?></li>
     </ul>
-    <div class="button-upgrade"><a href="https://storepro.io/product/?add-to-cart=14883" target="_blank" style="color: #fff;text-decoration: none;font-weight: 600;"><?php echo esc_html__('Upgrade to Pro Version Now', 'subscriptions-renewal-reminders'); ?></a>
+    <div class="button-upgrade"><a href="https://storepro.io/product/?add-to-cart=14883" target="_blank" class="button sprr-upgrade-btn" style="text-decoration: none;"><?php echo esc_html__('Upgrade to Pro Version Now', 'subscriptions-renewal-reminders'); ?></a>
     </div>
   </div>
 

@@ -15,6 +15,11 @@ $edit_id = isset($_GET['edit_template']) ? sanitize_text_field($_GET['edit_templ
 $template_name = isset($_GET['template_name']) ? sanitize_text_field($_GET['template_name']) : '';
 $template_subject = isset($_GET['template_subject']) ? sanitize_text_field($_GET['template_subject']) : '';
 $template_content = isset($_GET['template_content']) ? wp_kses_post(urldecode($_GET['template_content'])) : '';
+
+// Enqueue WordPress media library for image selection
+if (function_exists('wp_enqueue_media')) {
+    wp_enqueue_media();
+}
 ?>
 
 <div style="background: #fff; padding: 0; margin-top: 20px; border: 1px solid #ccd0d4; box-shadow: 0 1px 1px rgba(0,0,0,.04);">
@@ -42,7 +47,7 @@ $template_content = isset($_GET['template_content']) ? wp_kses_post(urldecode($_
                 </div>
             </div>
 
-            <div class="sprr-sidebar-section" style="border-top: 1px solid #ddd; padding-top: 20px; margin-top: 20px;">
+            <div class="sprr-sidebar-section sprr-components-section" style="border-top: 1px solid #ddd; padding-top: 20px; margin-top: 20px;">
                 <h3>Components</h3>
                 <p class="description">Drag into preview</p>
                 
@@ -82,7 +87,7 @@ $template_content = isset($_GET['template_content']) ? wp_kses_post(urldecode($_
                 </div>
             </div>
 
-            <div class="sprr-sidebar-section" style="border-top: 1px solid #ddd; padding-top: 20px; margin-top: 20px;">
+            <div class="sprr-sidebar-section sprr-edit-section" style="border-top: 1px solid #ddd; padding-top: 20px; margin-top: 20px;">
                 <h4>Edit Selected</h4>
                 <div id="sprr-properties-panel">
                     <div style="text-align: center; padding: 20px; color: #999; font-size: 13px;">
@@ -102,12 +107,10 @@ $template_content = isset($_GET['template_content']) ? wp_kses_post(urldecode($_
                     <span class="dashicons dashicons-visibility" style="margin-right: 5px;"></span>
                     Email Preview
                 </h3>
-                <?php if (!empty($template_content)): ?>
-                    <button type="button" id="sprr-edit-html-btn" class="button" style="margin-right: 15px;">
-                        <span class="dashicons dashicons-editor-code"></span>
-                        Edit
-                    </button>
-                <?php endif; ?>
+                <button type="button" id="sprr-edit-html-btn" class="button" style="margin-right: 15px;">
+                    <span class="dashicons dashicons-editor-code"></span>
+                    Full Editor
+                </button>
             </div>
             
             <div id="sprr-canvas-area" class="sprr-canvas-area">
@@ -142,6 +145,47 @@ $template_content = isset($_GET['template_content']) ? wp_kses_post(urldecode($_
             </button>
         </div>
     </div>
+</div>
+
+<!-- Limit Modal (same style and content as Template Library) -->
+<div id="sprr-limit-modal" class="sprr-modal" style="display: none;">
+    <div class="sprr-modal-content" style="max-width: 560px;">
+        <div class="sprr-modal-header">
+            <h2>Limit Reached</h2>
+            <button type="button" class="sprr-modal-close">&times;</button>
+        </div>
+        <div class="sprr-modal-body" style="font-size: 14px; color: #333;">
+            <p style="margin-top: 0;">
+                Free version allows only 1 custom template. You already have a custom template. To add more, please upgrade.
+            </p>
+            <p style="margin: 10px 0; font-size: 13px; color: #444;">
+                Please upgrade or delete an existing template from
+                <a href="<?php echo admin_url('admin.php?page=sp-renewal-reminders-templates&template_tab=custom'); ?>" target="_blank">My Templates</a>.
+            </p>
+            <div style="background:#fff8e1; border:1px solid #ffe082; border-radius:4px; padding:10px; margin-top:10px;">
+                <p style="margin:0 0 10px 0; font-size:13px; color:#856404;">
+                    Win-back templates and unlimited custom templates are available in Pro.
+                </p>
+                <a href="https://storepro.io/subscription-renewal-premium/" target="_blank" class="button button-primary sprr-upgrade-btn">Upgrade to Pro</a>
+            </div>
+        </div>
+        <div class="sprr-modal-footer">
+            <button type="button" class="button sprr-modal-close">Close</button>
+        </div>
+    </div>
+    <style>
+    /* Modal Styles */
+    .sprr-modal { position: fixed; z-index: 1000000 !important; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); display: none; }
+    .sprr-modal-content { background-color: #fff; margin: 50px auto; width: 90%; max-width: 800px; border-radius: 4px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative; }
+    .sprr-modal-header { padding: 20px 30px; border-bottom: 1px solid #ddd; display: flex; justify-content: space-between; align-items: center; }
+    .sprr-modal-header h2 { margin: 0; }
+    .sprr-modal-header .sprr-modal-close { background: none; border: none; font-size: 28px; font-weight: bold; color: #666; cursor: pointer; padding: 0; width: 30px; height: 30px; line-height: 1; }
+    .sprr-modal-header .sprr-modal-close:hover { color: #000; }
+    .sprr-modal-footer { padding: 15px 30px; border-top: 1px solid #ddd; text-align: right; }
+    .sprr-modal-footer .button { margin-left: 10px; min-width: 120px; padding: 6px 20px; }
+    .sprr-modal-footer .sprr-modal-close { font-size: inherit; font-weight: 600; width: auto; height: auto; line-height: normal; color: inherit; padding: 6px 20px; }
+    .sprr-modal-body { padding: 20px 30px; max-height: 60vh; overflow-y: auto; }
+    </style>
 </div>
 
 <style>
@@ -484,6 +528,11 @@ $template_content = isset($_GET['template_content']) ? wp_kses_post(urldecode($_
 .sprr-full-panel.active {
     display: block;
 }
+
+/* Helper: hide sections */
+.sprr-hidden {
+    display: none !important;
+}
 </style>
 
 <script>
@@ -491,6 +540,30 @@ jQuery(document).ready(function($) {
     let selectedBlock = null;
     let draggedType = null;
     let blockIdCounter = 0;
+    
+    // Toggle sidebar mode: 'edit' hides Components, shows Edit panel; 'browse' shows Components, hides Edit panel
+    function toggleSidebarEditingMode(mode) {
+        const $components = $('.sprr-components-section');
+        const $edit = $('.sprr-edit-section');
+        if (mode === 'edit') {
+            $components.addClass('sprr-hidden');
+            $edit.removeClass('sprr-hidden');
+            $('.sprr-builder-sidebar').scrollTop(0);
+        } else {
+            $components.removeClass('sprr-hidden');
+            $edit.addClass('sprr-hidden');
+            // Reset properties panel content and cleanup editors
+            if (typeof tinymce !== 'undefined' && tinymce.get('block-visual-editor')) {
+                tinymce.get('block-visual-editor').remove();
+            }
+            $('#sprr-properties-panel').html(`
+                <div style="text-align: center; padding: 20px; color: #999; font-size: 13px;">
+                    <span class="dashicons dashicons-admin-settings" style="font-size: 32px; opacity: 0.3;"></span>
+                    <p>Click a component to edit</p>
+                </div>
+            `);
+        }
+    }
     
     // Component templates
     const componentTemplates = {
@@ -616,6 +689,8 @@ jQuery(document).ready(function($) {
             $(this).addClass('selected');
             selectedBlock = $(this);
             showProperties($(this));
+            // Switch to editing mode on selection
+            toggleSidebarEditingMode('edit');
         }
     });
     
@@ -704,8 +779,12 @@ jQuery(document).ready(function($) {
             fontSize: parseInt(styleTarget.css('font-size')) || 16,
             paddingTop: parseInt(wrapper.css('padding-top')) || 0,
             paddingBottom: parseInt(wrapper.css('padding-bottom')) || 0,
+            paddingLeft: parseInt(wrapper.css('padding-left')) || 0,
+            paddingRight: parseInt(wrapper.css('padding-right')) || 0,
             marginTop: parseInt(wrapper.css('margin-top')) || 0,
-            marginBottom: parseInt(wrapper.css('margin-bottom')) || 0
+            marginBottom: parseInt(wrapper.css('margin-bottom')) || 0,
+            marginLeft: parseInt(wrapper.css('margin-left')) || 0,
+            marginRight: parseInt(wrapper.css('margin-right')) || 0
         };
 
         // Special check for gradients (since color pickers can't show them)
@@ -748,6 +827,22 @@ jQuery(document).ready(function($) {
 
                 <div class="sprr-form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
                     <div>
+                        <label>Margin Left</label>
+                        <input type="number" class="style-input-sync" data-prop="margin-left" value="${styles.marginLeft}">
+                    </div>
+                    <div>
+                        <label>Margin Right</label>
+                        <input type="number" class="style-input-sync" data-prop="margin-right" value="${styles.marginRight}">
+                    </div>
+                </div>
+
+                <div class="sprr-form-group">
+                    <label>Horizontal Margin (L/R)</label>
+                    <input type="number" class="style-input-sync" data-prop="margin-x" value="${Math.round((styles.marginLeft + styles.marginRight) / 2)}">
+                </div>
+
+                <div class="sprr-form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <div>
                         <label>Padding Top</label>
                         <input type="number" class="style-input-sync" data-prop="padding-top" value="${styles.paddingTop}">
                     </div>
@@ -757,12 +852,60 @@ jQuery(document).ready(function($) {
                     </div>
                 </div>
 
+                <div class="sprr-form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <div>
+                        <label>Padding Left</label>
+                        <input type="number" class="style-input-sync" data-prop="padding-left" value="${styles.paddingLeft}">
+                    </div>
+                    <div>
+                        <label>Padding Right</label>
+                        <input type="number" class="style-input-sync" data-prop="padding-right" value="${styles.paddingRight}">
+                    </div>
+                </div>
+
+                <div class="sprr-form-group">
+                    <label>Horizontal Padding (L/R)</label>
+                    <input type="number" class="style-input-sync" data-prop="padding-x" value="${Math.round((styles.paddingLeft + styles.paddingRight) / 2)}">
+                </div>
+
                 <div class="sprr-form-group">
                     <label>Font Size (px)</label>
                     <input type="number" class="style-input-sync" data-prop="font-size" value="${styles.fontSize}">
                 </div>
             </div>
         `;
+
+        // Image-specific controls: Add Media button and URL field
+        if (type === 'image') {
+            const imgEl = wrapper.find('img').first();
+            const currentImgUrl = imgEl.length ? (imgEl.attr('src') || '') : '';
+            const currentMaxWidth = imgEl.length ? (parseInt(imgEl.css('max-width')) || '') : '';
+            const currentMaxHeight = imgEl.length ? (parseInt(imgEl.css('max-height')) || '') : '';
+            propertiesHtml += `
+                <div class="sprr-form-group" style="border: 1px solid #ddd; padding: 12px; margin-bottom: 20px; border-radius: 4px; background: #fff;">
+                    <label style="font-weight: 600;">Image Source</label>
+                    <div style="display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center;">
+                        <input type="text" id="sprr-image-url" value="${currentImgUrl}" placeholder="https://example.com/image.jpg" />
+                        <button type="button" class="button sprr-add-media-btn" style="white-space: nowrap;">Add Media</button>
+                    </div>
+                    <p class="description" style="font-size: 11px; color: #666; margin-top: 8px;">Use Add Media to pick from your library or paste a direct URL.</p>
+                </div>
+                <div class="sprr-form-group" style="border: 1px solid #ddd; padding: 12px; margin-bottom: 20px; border-radius: 4px; background: #fff;">
+                    <label style="font-weight: 600;">Image Size</label>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <div>
+                            <label>Max Width (px)</label>
+                            <input type="number" class="style-input-sync" data-prop="max-width" value="${currentMaxWidth}" min="0" />
+                        </div>
+                        <div>
+                            <label>Max Height (px)</label>
+                            <input type="number" class="style-input-sync" data-prop="max-height" value="${currentMaxHeight}" min="0" />
+                        </div>
+                    </div>
+                    <p class="description" style="font-size: 11px; color: #666; margin-top: 8px;">Leave blank to let the image size naturally. Setting max dimensions helps constrain large images.</p>
+                </div>
+            `;
+        }
         
         // Common property: Edit HTML
         const currentHtml = block.html().replace(/<div class="sprr-block-controls">.*?<\/div>/s, '').trim();
@@ -816,12 +959,13 @@ jQuery(document).ready(function($) {
                     menubar: false,
                     height: 250,
                     branding: false,
-                    plugins: 'link lists textcolor colorpicker autoresize',
+                    plugins: 'link lists textcolor',
                     toolbar: 'undo redo | bold italic | forecolor backcolor | alignleft aligncenter alignright | bullist numlist | link | removeformat',
                     content_style: 'body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif; font-size: 14px; padding: 10px; }',
                     setup: function(editor) {
                         editor.on('init', function() {
                             editor.setContent(currentHtml);
+                            editor.focus();
                         });
                         editor.on('change keyup', function() {
                             editor.save();
@@ -906,7 +1050,7 @@ jQuery(document).ready(function($) {
             }
         }
 
-        if (prop === 'font-size' || prop === 'padding-top' || prop === 'padding-bottom' || prop === 'margin-top' || prop === 'margin-bottom') {
+        if (prop === 'font-size' || prop === 'padding-top' || prop === 'padding-bottom' || prop === 'padding-left' || prop === 'padding-right' || prop === 'margin-top' || prop === 'margin-bottom' || prop === 'margin-left' || prop === 'margin-right' || prop === 'margin-x' || prop === 'padding-x' || prop === 'max-width' || prop === 'max-height') {
             value += 'px';
         }
 
@@ -926,10 +1070,64 @@ jQuery(document).ready(function($) {
             if (type === 'button') styleTarget = wrapper.find('a').first();
             
             styleTarget.css(prop, value);
+        } else if (prop === 'max-width' || prop === 'max-height') {
+            const imgTarget = selectedBlock.find('img').first();
+            if (imgTarget.length) {
+                // Blank value removes the constraint
+                if ($(this).val() === '' || parseInt($(this).val()) === 0) {
+                    imgTarget.css(prop, '');
+                } else {
+                    imgTarget.css(prop, value);
+                }
+            }
+        } else if (prop === 'margin-x') {
+            // Apply horizontal margin to both sides
+            wrapper.css('margin-left', value);
+            wrapper.css('margin-right', value);
+        } else if (prop === 'padding-x') {
+            // Apply horizontal padding to both sides
+            wrapper.css('padding-left', value);
+            wrapper.css('padding-right', value);
         } else {
             // Padding always goes to wrapper
             wrapper.css(prop, value);
         }
+    });
+
+    // Image URL manual change sync
+    $(document).on('input change', '#sprr-image-url', function() {
+        if (!selectedBlock) return;
+        const url = $(this).val();
+        const img = selectedBlock.find('img').first();
+        if (img.length) {
+            img.attr('src', url);
+        }
+    });
+
+    // Add Media button opens WP media frame and sets image
+    $(document).on('click', '.sprr-add-media-btn', function() {
+        // Ensure a block is selected
+        if (!selectedBlock) return;
+        
+        const frame = wp.media({
+            title: 'Select or Upload Image',
+            button: { text: 'Use this image' },
+            multiple: false
+        });
+        
+        frame.on('select', function() {
+            const attachment = frame.state().get('selection').first().toJSON();
+            const img = selectedBlock.find('img').first();
+            if (img.length) {
+                img.attr('src', attachment.url);
+                if (attachment.alt) {
+                    img.attr('alt', attachment.alt);
+                }
+            }
+            $('#sprr-image-url').val(attachment.url);
+        });
+        
+        frame.open();
     });
     
     // Update block HTML
@@ -952,10 +1150,13 @@ jQuery(document).ready(function($) {
             const controls = selectedBlock.find('.sprr-block-controls').prop('outerHTML');
             selectedBlock.html(controls + newHtml);
             
-            // Remove TinyMCE instance
+            // Keep TinyMCE instance so the Visual editor remains active
+            // If needed, you can refresh content manually:
             if (typeof tinymce !== 'undefined' && tinymce.get('block-visual-editor')) {
-                tinymce.get('block-visual-editor').remove();
+                tinymce.get('block-visual-editor').setContent(newHtml);
             }
+            // Also sync the HTML textarea
+            $('#block-html-editor').val(formatHTML(newHtml));
         }
     });
     
@@ -973,6 +1174,7 @@ jQuery(document).ready(function($) {
                 <p>Click a component to edit</p>
             </div>
         `);
+        toggleSidebarEditingMode('browse');
     });
     
     // Preview
@@ -1037,7 +1239,12 @@ jQuery(document).ready(function($) {
                     alert('Template saved successfully!');
                     window.location.href = '?page=sp-renewal-reminders-templates&template_tab=custom';
                 } else {
-                    alert('Error: ' + response.data);
+                    var msg = response.data || '';
+                    if (typeof msg === 'string' && msg.indexOf('Free version allows only 1 custom template') !== -1) {
+                        $('#sprr-limit-modal').fadeIn(200);
+                    } else {
+                        alert('Error: ' + msg);
+                    }
                     $button.prop('disabled', false).html('<span class="dashicons dashicons-saved" style="margin-top: 3px;"></span> Save Template');
                 }
             },
@@ -1081,6 +1288,12 @@ jQuery(document).ready(function($) {
                     </div>
                     <button type="button" class="sprr-close-modal" style="background: none; border: none; font-size: 28px; cursor: pointer; line-height: 1;">&times;</button>
                 </div>
+                <div id="sprr-full-editor-loader" style="position: absolute; inset: 0; background: rgba(255,255,255,0.85); display: flex; align-items: center; justify-content: center; z-index: 10;">
+                    <div style="display:flex; align-items:center; gap:10px; color:#555; font-size:14px;">
+                        <span class="dashicons dashicons-update" style="font-size:22px; animation: sprr-spin 1s linear infinite;"></span>
+                        Loading editor...
+                    </div>
+                </div>
                 <div style="padding: 20px; overflow-y: auto; flex: 1;">
                     <div class="sprr-full-panel visual-panel <?php echo !sprr_is_premium_active() ? 'active' : ''; ?>" style="display: <?php echo !sprr_is_premium_active() ? 'block' : 'none'; ?>;">
                         <textarea id="sprr-full-visual-editor" style="width: 100%; min-height: 400px;"></textarea>
@@ -1110,15 +1323,19 @@ jQuery(document).ready(function($) {
                     selector: '#sprr-full-visual-editor',
                     menubar: true,
                     height: 400,
-                    plugins: 'link lists textcolor colorpicker image code table',
-                    toolbar: 'undo redo | formatselect | bold italic | forecolor backcolor | alignleft aligncenter alignright | bullist numlist | link image | table code | removeformat',
+                    plugins: 'link lists textcolor image',
+                    toolbar: 'undo redo | formatselect | bold italic | forecolor backcolor | alignleft aligncenter alignright | bullist numlist | link image | removeformat',
                     content_style: 'body { font-family: Arial, sans-serif; font-size: 14px; padding: 20px; }',
                     setup: function(editor) {
                         editor.on('init', function() {
                             editor.setContent(currentContent);
+                            $('#sprr-full-editor-loader').hide();
                         });
                     }
                 });
+            } else {
+                // TinyMCE not available; hide loader and rely on HTML panel
+                $('#sprr-full-editor-loader').hide();
             }
         }, 100);
 
@@ -1198,5 +1415,25 @@ jQuery(document).ready(function($) {
         });
         return formattedLines.join('\n');
     }
+    
+    // Click anywhere in the canvas outside a block should revert to browse mode
+    $('#sprr-canvas-area').on('click', function(e) {
+        const clickedInsideBlock = $(e.target).closest('.sprr-canvas-block').length > 0;
+        if (!clickedInsideBlock) {
+            selectedBlock = null;
+            $('.sprr-canvas-block').removeClass('selected');
+            toggleSidebarEditingMode('browse');
+        }
+    });
+
+    // Limit modal close handlers
+    $(document).on('click', '.sprr-modal-close', function() {
+        $('#sprr-limit-modal').fadeOut(200);
+    });
+    $(window).on('click', function(e) {
+        if ($(e.target).hasClass('sprr-modal')) {
+            $('#sprr-limit-modal').fadeOut(200);
+        }
+    });
 });
 </script>
