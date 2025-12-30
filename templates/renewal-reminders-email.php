@@ -62,7 +62,17 @@ function sprr_renewalremindersemail($subscriber_details_first_name, $subscriber_
 
 																<p style="margin: 0 0 16px">
 																	<?php
-																	$body_content = stripslashes_deep(get_option('email_content'));
+																	// Prefer selected template content; fallback to legacy email_content or blank default
+																	$selected_id = get_option('sprr_selected_template', 'default_template');
+																	$custom_templates = get_option('sprr_custom_templates', array());
+																	if (isset($custom_templates[$selected_id]) && !empty($custom_templates[$selected_id]['content'])) {
+																		$body_content = $custom_templates[$selected_id]['content'];
+																	} else {
+																		$body_content = stripslashes_deep(get_option('email_content'));
+																		if (empty($body_content)) {
+																			$body_content = get_blank_content_reminder_text();
+																		}
+																	}
 
 																	$body_content =  str_replace("{first_name}", $subscriber_details_first_name, $body_content);
 																	$body_content =  str_replace("{last_name}",  $subscriber_details_last_name, $body_content);
@@ -70,9 +80,6 @@ function sprr_renewalremindersemail($subscriber_details_first_name, $subscriber_
 																	// $body_content = str_replace("{cancel_subscription}", do_shortcode('[subscription_cancel_button]'), $body_content);
 																	// Use do_shortcode() to process the subscription cancel button and store in a variable
 																	$cancel_button_html = do_shortcode('[subscription_cancel_button]');
-																	// Debug: Log the output of the shortcode
-																	error_log('Cancel Button Shortcode Output: ' . $cancel_button_html);
-
 																	// Replace the {cancel_subscription} placeholder with the shortcode output
 																	$body_content = str_replace("{cancel_subscription}", $cancel_button_html, $body_content);
 
@@ -107,6 +114,7 @@ function sprr_renewalremindersemail($subscriber_details_first_name, $subscriber_
 
 
 
-	return ob_get_contents();
-	ob_get_clean();
+	// Capture the buffer and clean it before returning
+	$content = ob_get_clean();
+	return $content;
 }

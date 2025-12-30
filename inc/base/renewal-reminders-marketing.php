@@ -112,6 +112,20 @@ class SPRRMarketing
             $sent_count,
             $failed_count
         );
+        // Log to email history (Pro only)
+        if (function_exists('sprr_is_premium_active') && sprr_is_premium_active()) {
+            $history = get_option('sprr_email_history', array());
+            $history[] = array(
+                'type' => 'winback',
+                'subject' => stripslashes_deep(esc_attr(get_option('sprr_winback_email_subject', __('We Miss You! Special Offer Inside', 'subscriptions-renewal-reminders')))),
+                'template' => 'winback',
+                'sent' => $sent_count,
+                'failed' => $failed_count,
+                'retained' => 0,
+                'timestamp' => current_time('mysql'),
+            );
+            update_option('sprr_email_history', $history);
+        }
 
         wp_send_json_success(array(
             'message' => $message,
@@ -269,6 +283,12 @@ class SPRRMarketing
         $custom_templates = get_option('sprr_custom_templates', array());
         
         $is_new = !isset($custom_templates[$template_id]);
+
+        // Enforce free limit: only 1 custom template allowed for non-premium users
+        if ($is_new && !sprr_is_premium_active() && count($custom_templates) >= 1) {
+            wp_send_json_error(__('Free version allows only 1 custom template. Please upgrade or delete an existing template.', 'subscriptions-renewal-reminders'));
+            return;
+        }
         
         $custom_templates[$template_id] = array(
             'id' => $template_id,

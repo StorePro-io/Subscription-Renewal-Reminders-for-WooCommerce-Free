@@ -72,20 +72,19 @@ $predefined_templates = array(
                         <h2 style="color: #333; margin: 10px 0;">Renewal Reminder</h2>
                     </div>
                     <p style="font-size: 16px; color: #666; line-height: 1.6;">
-                        Hi {first_name},
+                        Hi {first_name} {last_name},
                     </p>
                     <p style="font-size: 16px; color: #666; line-height: 1.6;">
-                        This is a friendly reminder that your subscription will renew soon. We wanted to make sure everything is set up correctly.
+                        This is a friendly reminder that your subscription will renew on <strong>{next_payment_date}</strong>. Please ensure your details are up to date.
                     </p>
                     <div style="background: #f9f9f9; padding: 20px; border-radius: 5px; margin: 20px 0;">
-                        <p style="margin: 0; color: #333;"><strong>Renewal Date:</strong> [Date]</p>
-                        <p style="margin: 10px 0 0; color: #333;"><strong>Amount:</strong> [Amount]</p>
+                        <p style="margin: 0; color: #333;"><strong>Renewal Date:</strong> {next_payment_date}</p>
                     </div>
-                    <p style="font-size: 16px; color: #666; line-height: 1.6;">
-                        If you need to update your payment method or have any questions, you can manage your subscription below:
-                    </p>
                     <div style="text-align: center; margin: 30px 0;">
-                        <a href="{subscription_link}" style="background: #2196F3; color: #fff; padding: 15px 40px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold;">Manage Subscription</a>
+                        <a href="#" style="background: #2196F3; color: #fff; padding: 15px 40px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold;">Manage Subscription</a>
+                    </div>
+                    <div style="text-align: center; margin-top: 15px;">
+                        {cancel_subscription}
                     </div>
                 </div>
             </div>
@@ -100,20 +99,20 @@ $predefined_templates = array(
             <div style="background: #fff; padding: 40px 20px; border: 1px solid #eee;">
                 <div style="max-width: 600px; margin: 0 auto;">
                     <h2 style="color: #4CAF50;">Upcoming Renewal</h2>
-                    <p style="font-size: 16px; color: #666;">Hi {first_name},</p>
+                    <p style="font-size: 16px; color: #666;">Hi {first_name} {last_name},</p>
                     <p style="font-size: 16px; color: #666; line-height: 1.6;">
-                        Just a quick heads-up that your subscription is scheduled for renewal in a few days. We value your membership and wanted to give you plenty of notice.
+                        Just a quick heads-up that your subscription is scheduled to renew on <strong>{next_payment_date}</strong>. We value your membership and wanted to give you plenty of notice.
                     </p>
                     <p style="font-size: 16px; color: #666;">
                         No action is needed on your part if you wish to continue enjoying your benefits!
                     </p>
                     <div style="margin: 30px 0; border-left: 4px solid #4CAF50; padding-left: 20px;">
                         <p style="margin: 0; font-size: 14px; color: #888;">Expected Renewal Date:</p>
-                        <p style="margin: 5px 0 0; font-size: 18px; color: #333; font-weight: bold;">[Date]</p>
+                        <p style="margin: 5px 0 0; font-size: 18px; color: #333; font-weight: bold;">{next_payment_date}</p>
                     </div>
-                    <p style="font-size: 14px; color: #999;">
-                        Need to make changes? <a href="{subscription_link}" style="color: #4CAF50;">Visit your account dashboard.</a>
-                    </p>
+                    <div style="text-align:center; margin-top: 20px;">
+                        {cancel_subscription}
+                    </div>
                 </div>
             </div>
         '
@@ -122,7 +121,7 @@ $predefined_templates = array(
         'name' => 'Renewal Reminder (Last Chance)',
         'subject' => 'Action Required: Your Subscription Renews Tomorrow',
         'preview' => 'Urgent reminder for immediate attention',
-        'premium' => false,
+        'premium' => true,
         'content' => '
             <div style="background: #fff5f5; padding: 40px 20px; border: 2px solid #feb2b2;">
                 <div style="max-width: 600px; margin: 0 auto; text-align: center;">
@@ -204,12 +203,163 @@ $predefined_templates = array(
             </div>
         '
     ),
+    'renewal_modern_pro' => array(
+        'name' => 'Renewal Reminder (Modern Hero) — PRO',
+        'subject' => 'Heads up, your renewal is on {next_payment_date}',
+        'preview' => 'Bold hero banner + details card with clear CTA',
+        'premium' => true,
+        'content' => '
+            <div style="background: linear-gradient(135deg,#667eea 0%,#764ba2 100%); padding: 40px 20px; text-align: center;">
+                <h1 style="color:#fff; margin:0; font-size:32px;">Your Subscription Renews Soon</h1>
+                <p style="color:#eaeaea; font-size:14px; margin:10px 0 0;">Hello {first_name}, a quick reminder so you\'re prepared.</p>
+            </div>
+            <div style="padding: 30px 20px; background:#fff;">
+                <div style="max-width:600px; margin:0 auto;">
+                    <div style="background:#f9f9ff; border:1px solid #e6e6ff; border-radius:8px; padding:20px;">
+                        <h3 style="margin:0 0 10px; color:#333;">Renewal Details</h3>
+                        <p style="margin:6px 0; color:#555; line-height:1.6;"><strong>Date:</strong> {next_payment_date}</p>
+                        <p style="margin:6px 0; color:#555; line-height:1.6;"><strong>Plan:</strong> [Plan Name]</p>
+                        <p style="margin:6px 0; color:#555; line-height:1.6;"><strong>Amount:</strong> [Amount]</p>
+                    </div>
+                    <div style="text-align:center; margin:24px 0;">
+                        <a href="{subscription_link}" style="background:#2271b1; color:#fff; padding:14px 32px; text-decoration:none; border-radius:6px; display:inline-block; font-weight:600;">Manage Subscription</a>
+                        <div style="margin-top:10px;">
+                            <a href="{cancel_subscription}" style="color:#666; font-size:12px;">Cancel or change preferences</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        '
+    ),
+    'renewal_minimal_pro' => array(
+        'name' => 'Renewal Reminder (Minimal) — PRO',
+        'subject' => 'Upcoming renewal for your subscription',
+        'preview' => 'Clean, lightweight layout focusing on essentials',
+        'premium' => true,
+        'content' => '
+            <div style="background:#ffffff; padding:40px 20px;">
+                <div style="max-width:600px; margin:0 auto;">
+                    <h2 style="margin:0 0 12px; color:#222;">Upcoming Renewal</h2>
+                    <p style="color:#666; line-height:1.7;">Hi {first_name}, your subscription renews on <strong>{next_payment_date}</strong>. If that\'s perfect, no action is needed.</p>
+                    <ul style="color:#444; line-height:1.8; padding-left:20px;">
+                        <li>Plan: [Plan Name]</li>
+                        <li>Amount: [Amount]</li>
+                        <li>Payment method: [Card ending ****]</li>
+                    </ul>
+                    <div style="text-align:center; margin-top:20px;">
+                        <a href="{subscription_link}" style="background:#000; color:#fff; padding:12px 28px; text-decoration:none; border-radius:4px; display:inline-block; font-weight:600;">Review Details</a>
+                    </div>
+                    <p style="color:#999; font-size:12px; margin-top:16px; text-align:center;">Need help? Reply to this email.</p>
+                </div>
+            </div>
+        '
+    ),
+    'renewal_receipt_pro' => array(
+        'name' => 'Renewal Reminder (Receipt Style) — PRO',
+        'subject' => 'Payment reminder for your subscription',
+        'preview' => 'Structured card with receipt/invoice-style details',
+        'premium' => true,
+        'content' => '
+            <div style="background:#f5f7fb; padding:40px 20px;">
+                <div style="max-width:620px; margin:0 auto; background:#fff; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.08); overflow:hidden;">
+                    <div style="padding:22px 24px; border-bottom:1px solid #eee; display:flex; justify-content:space-between; align-items:center;">
+                        <h3 style="margin:0; color:#333;">Subscription Renewal</h3>
+                        <span style="background:#2271b1; color:#fff; font-size:12px; padding:6px 10px; border-radius:999px;">Reminder</span>
+                    </div>
+                    <div style="padding:24px;">
+                        <table style="width:100%; border-collapse:collapse; font-size:14px; color:#444;">
+                            <tr>
+                                <td style="padding:8px 0;">Subscriber</td><td style="padding:8px 0; text-align:right;">{first_name}</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:8px 0;">Renewal Date</td><td style="padding:8px 0; text-align:right;">{next_payment_date}</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:8px 0;">Plan</td><td style="padding:8px 0; text-align:right;">[Plan Name]</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:8px 0;">Amount</td><td style="padding:8px 0; text-align:right;">[Amount]</td>
+                            </tr>
+                        </table>
+                        <div style="text-align:center; margin-top:20px;">
+                            <a href="{subscription_link}" style="background:#2271b1; color:#fff; padding:12px 30px; text-decoration:none; border-radius:6px; display:inline-block; font-weight:600;">Manage Subscription</a>
+                        </div>
+                    </div>
+                    <div style="background:#fafafa; padding:14px 24px; font-size:12px; color:#777; text-align:center;">Questions? Our support team is happy to help.</div>
+                </div>
+            </div>
+        '
+    ),
+    'renewal_dark_pro' => array(
+        'name' => 'Renewal Reminder (Dark) — PRO',
+        'subject' => 'Your renewal is approaching',
+        'preview' => 'Elegant dark theme with a bright action button',
+        'premium' => true,
+        'content' => '
+            <div style="background:#0f172a; padding:40px 20px;">
+                <div style="max-width:620px; margin:0 auto; background:#111827; border-radius:10px; overflow:hidden;">
+                    <div style="padding:30px 24px; text-align:center;">
+                        <h2 style="margin:0; color:#e5e7eb;">Subscription Renewal</h2>
+                        <p style="color:#9ca3af; margin:8px 0 0;">Hi {first_name}, your renewal date is {next_payment_date}.</p>
+                    </div>
+                    <div style="padding:24px; border-top:1px solid #1f2937;">
+                        <p style="color:#d1d5db; line-height:1.7; text-align:center;">Make changes or review your details below.</p>
+                        <div style="text-align:center; margin-top:16px;">
+                            <a href="{subscription_link}" style="background:#10b981; color:#0f172a; padding:12px 28px; text-decoration:none; border-radius:6px; display:inline-block; font-weight:700;">Open Dashboard</a>
+                        </div>
+                        <p style="color:#6b7280; font-size:12px; margin-top:18px; text-align:center;">If you no longer wish to continue, you can <a href="{cancel_subscription}" style="color:#93c5fd;">cancel here</a>.</p>
+                    </div>
+                </div>
+            </div>
+        '
+    ),
+    'renewal_banner_pro' => array(
+        'name' => 'Renewal Reminder (Image Banner) — PRO',
+        'subject' => 'Reminder: renewal on {next_payment_date}',
+        'preview' => 'Eye-catching banner with concise guidance and CTA',
+        'premium' => true,
+        'content' => '
+            <div style="background:#f3f4f6; padding:40px 20px;">
+                <div style="max-width:640px; margin:0 auto; background:#fff; border-radius:8px; overflow:hidden; box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+                    <img src="https://via.placeholder.com/1280x320" alt="Renewal banner" style="display:block; width:100%; height:auto;" />
+                    <div style="padding:24px;">
+                        <h2 style="margin:0 0 8px; color:#222;">Upcoming Renewal</h2>
+                        <p style="color:#666; line-height:1.7;">Hey {first_name}, your subscription renews on <strong>{next_payment_date}</strong>. You can review or update details anytime.</p>
+                        <div style="text-align:center; margin-top:16px;">
+                            <a href="{subscription_link}" style="background:#3b82f6; color:#fff; padding:12px 28px; text-decoration:none; border-radius:6px; display:inline-block; font-weight:600;">Manage Subscription</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        '
+    ),
+    'renewal_action_pro' => array(
+        'name' => 'Renewal Reminder (Action Required) — PRO',
+        'subject' => 'Action required before renewal',
+        'preview' => 'Alert-style card emphasising payment update or review',
+        'premium' => true,
+        'content' => '
+            <div style="background:#fff; padding:40px 20px;">
+                <div style="max-width:620px; margin:0 auto; border:1px solid #fde68a; background:#fffbeb; border-radius:8px;">
+                    <div style="padding:20px 24px;">
+                        <div style="display:inline-block; background:#f59e0b; color:#fff; padding:4px 10px; border-radius:999px; font-size:12px; font-weight:700;">ACTION NEEDED</div>
+                        <h3 style="margin:12px 0 8px; color:#1f2937;">Update your payment details</h3>
+                        <p style="color:#374151; line-height:1.7;">Hi {first_name}, to ensure a smooth renewal on <strong>{next_payment_date}</strong>, please confirm your payment method.</p>
+                        <div style="text-align:center; margin-top:16px;">
+                            <a href="{subscription_link}" style="background:#f59e0b; color:#1f2937; padding:12px 28px; text-decoration:none; border-radius:6px; display:inline-block; font-weight:700;">Review Now</a>
+                        </div>
+                        <p style="color:#6b7280; font-size:12px; margin-top:16px;">No longer interested? You can <a href="{cancel_subscription}" style="color:#ef4444;">cancel your subscription</a> anytime.</p>
+                    </div>
+                </div>
+            </div>
+        '
+    ),
 );
 
 $active_tab = isset($_GET['template_tab']) ? sanitize_text_field($_GET['template_tab']) : 'library';
 ?>
 
-<div class="wrap">
+<div class="wrap renewal-reminders-marketing renewal-reminder-plugin">
     <!-- Print the page title with enhanced styling -->
     <div style="text-align: center; margin: 30px 0;">
         <h1 class="renew-rem-makin-title"> 
@@ -307,7 +457,9 @@ $active_tab = isset($_GET['template_tab']) ? sanitize_text_field($_GET['template
                             <?php else: ?>
                                 <div style="text-align: center; padding: 10px; background: #fff8e1; border: 1px solid #ffe082; border-radius: 4px;">
                                     <p style="margin: 0 0 8px; font-size: 12px; color: #856404; font-weight: 500;">Win-back templates are available in Pro version</p>
-                                    <a href="https://storepro.io/subscription-renewal-premium/" target="_blank" class="button button-primary button-small" style="width: 100%;">
+                                    
+                                    
+                                    <a href="https://storepro.io/subscription-renewal-premium/" target="_blank" class="button button-primary button-small sprr-upgrade-btn" style="width: 100%;">
                                         Upgrade to Pro
                                     </a>
                                 </div>
@@ -315,6 +467,30 @@ $active_tab = isset($_GET['template_tab']) ? sanitize_text_field($_GET['template
                         </div>
                     </div>
                     <?php endforeach; ?>
+                </div>
+
+                <!-- Automation Rules (Display Only, PRO) -->
+                <div class="sprr-automation-showcase" style="margin-top: 25px;">
+                    <h2 style="margin: 0 0 8px;">Automation Rules <span style="font-size:11px; background:#ffb900; color:#000; padding:2px 6px; border-radius:10px; vertical-align:middle;">PRO</span></h2>
+                    <p class="description" style="margin: 0 0 10px;">Preview of an automation rule (display only)</p>
+                    <div class="sprr-automation-card" style="border: 2px solid #eee; border-radius: 6px; padding: 14px; background:#fff;">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <strong>Renewal Reminder Sequence</strong>
+                            <span style="background:#10b981; color:#fff; font-size:11px; padding:2px 8px; border-radius:999px;">Enabled</span>
+                        </div>
+                        <div style="margin-top:10px; font-size:13px; color:#444;">
+                            <div style="margin-bottom:6px;"><strong>Trigger:</strong> 14 days before renewal</div>
+                            <div style="margin-bottom:6px;"><strong>Actions:</strong> Send email “Heads up”, Tag subscriber “renewal-reminder”, Optional Slack notify</div>
+                            <div><strong>Scope:</strong> Active subscriptions (Monthly, Yearly)</div>
+                        </div>
+                        <div style="margin-top:12px; display:flex; gap:8px;">
+                            <span class="dashicons dashicons-yes" style="color:#10b981;"></span>
+                            <span style="font-size:12px; color:#666;">Automation is available in the Pro version.</span>
+                        </div>
+                        <div style="margin-top:12px; text-align:right;">
+                            <a href="https://storepro.io/subscription-renewal-premium/" target="_blank" class="button button-primary sprr-upgrade-btn">Upgrade to Pro</a>
+                        </div>
+                    </div>
                 </div>
             </div>
             
@@ -343,7 +519,7 @@ $active_tab = isset($_GET['template_tab']) ? sanitize_text_field($_GET['template
                         <p style="margin: 0 0 10px 0; color: #666; font-size: 14px;">
                             <?php esc_html_e('Free version allows only 1 custom template.', 'subscriptions-renewal-reminders'); ?>
                         </p>
-                        <a href="https://storepro.io/subscription-renewal-premium/" target="_blank" class="button button-primary">
+                        <a href="https://storepro.io/subscription-renewal-premium/" target="_blank" class="button button-primary sprr-upgrade-btn">
                             <span class="dashicons dashicons-star-filled" style="margin-top: 3px;"></span>
                             <?php esc_html_e('Upgrade to Pro for Unlimited Templates', 'subscriptions-renewal-reminders'); ?>
                         </a>
@@ -359,8 +535,7 @@ $active_tab = isset($_GET['template_tab']) ? sanitize_text_field($_GET['template
             <?php if (empty($custom_templates)): ?>
                 <div style="text-align: center; padding: 60px 20px; color: #666;">
                     <span class="dashicons dashicons-email-alt" style="font-size: 64px; opacity: 0.3;"></span>
-                    <p style="font-size: 16px; margin-top: 20px;">You haven't created any custom templates yet.</p>
-                    <a href="?page=sp-renewal-reminders-templates&template_tab=builder" class="button button-primary" style="margin-top: 10px;">Create Your First Template</a>
+                    <p style="font-size: 16px; margin-top: 33px;">You haven't created any custom templates yet.</p>
                 </div>
             <?php else: ?>
                 <table class="wp-list-table widefat fixed striped">
@@ -412,6 +587,34 @@ $active_tab = isset($_GET['template_tab']) ? sanitize_text_field($_GET['template
         </div>
         <div class="sprr-modal-body" id="sprr-preview-content" style="max-height: 70vh; overflow-y: auto;">
             <!-- Preview content will be inserted here -->
+        </div>
+        <div class="sprr-modal-footer">
+            <button type="button" class="button sprr-modal-close">Close</button>
+        </div>
+    </div>
+</div>
+
+<!-- Limit Modal -->
+<div id="sprr-limit-modal" class="sprr-modal" style="display: none;">
+    <div class="sprr-modal-content" style="max-width: 560px;">
+        <div class="sprr-modal-header">
+            <h2>Limit Reached</h2>
+            <button type="button" class="sprr-modal-close">&times;</button>
+        </div>
+        <div class="sprr-modal-body" style="font-size: 14px; color: #333;">
+            <p style="margin-top: 0;">
+                Free version allows only 1 custom template. You already have a custom template. To add more, please upgrade.
+            </p>
+            <p style="margin: 10px 0; font-size: 13px; color: #444;">
+                Please upgrade or delete an existing template from
+                <a href="<?php echo admin_url('admin.php?page=sp-renewal-reminders-templates&template_tab=custom'); ?>" target="_blank">My Templates</a>.
+            </p>
+            <div style="background:#fff8e1; border:1px solid #ffe082; border-radius:4px; padding:10px; margin-top:10px;">
+                <p style="margin:0 0 10px 0; font-size:13px; color:#856404;">
+                    Win-back templates and unlimited custom templates are available in Pro.
+                </p>
+                <a href="https://storepro.io/subscription-renewal-premium/" target="_blank" class="button button-primary">Upgrade to Pro</a>
+            </div>
         </div>
         <div class="sprr-modal-footer">
             <button type="button" class="button sprr-modal-close">Close</button>
@@ -493,10 +696,73 @@ $active_tab = isset($_GET['template_tab']) ? sanitize_text_field($_GET['template
 .sprr-pro-badge {
     z-index: 10;
 }
+
+/* Modal Styles (ensure popups overlay instead of appearing at footer) */
+.sprr-modal {
+    position: fixed;
+    z-index: 999999 !important;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    display: none; /* will be toggled via JS */
+}
+.sprr-modal-content {
+    background-color: #fff;
+    margin: 50px auto;
+    width: 90%;
+    max-width: 800px;
+    border-radius: 4px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 1000000 !important;
+}
+.sprr-modal-header {
+    padding: 20px 30px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.sprr-modal-header h2 {
+    margin: 0;
+}
+/* Close (X) button in header */
+.sprr-modal-header .sprr-modal-close {
+    background: none;
+    border: none;
+    font-size: 28px;
+    font-weight: bold;
+    color: #666;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    line-height: 1;
+}
+.sprr-modal-header .sprr-modal-close:hover { color: #000; }
+
+/* Footer Close button should look like a normal WP button */
+.sprr-modal-footer .sprr-modal-close {
+    font-size: inherit;
+    font-weight: 600;
+    width: auto;
+    height: auto;
+    line-height: normal;
+    color: inherit;
+    padding: 6px 20px;
+}
+.sprr-modal-body { padding: 20px 30px; max-height: 60vh; overflow-y: auto; }
+.sprr-modal-footer { padding: 15px 30px; border-top: 1px solid #ddd; text-align: right; }
+.sprr-modal-footer .button { margin-left: 10px; min-width: 120px; padding: 6px 20px; }
 </style>
 
 <script>
 jQuery(document).ready(function($) {
+    // Access limits
+    var isPremiumActive = <?php echo sprr_is_premium_active() ? 'true' : 'false'; ?>;
+    var customCount = <?php echo (int) count($custom_templates); ?>;
     // Template preview on click
     $('.template-card').on('click', function() {
         $('.template-card').removeClass('active');
@@ -516,17 +782,21 @@ jQuery(document).ready(function($) {
     // Use template
     $('.sprr-use-template').on('click', function(e) {
         e.stopPropagation();
+        // Free users limited to 1 custom template: block second template creation
+        if (!isPremiumActive && customCount >= 1) {
+            $('#sprr-limit-modal').fadeIn(200);
+            return; // Do not redirect or load into builder
+        }
+
         var templateName = $(this).data('template-name');
         var templateSubject = $(this).data('template-subject');
         var templateContent = $(this).data('template-content');
-        
-        // Redirect to builder with template data
+
         var url = '?page=sp-renewal-reminders-templates&template_tab=builder' +
                   '&use_template=1' +
                   '&template_name=' + encodeURIComponent(templateName) +
                   '&template_subject=' + encodeURIComponent(templateSubject) +
                   '&template_content=' + encodeURIComponent(templateContent);
-        
         window.location.href = url;
     });
     

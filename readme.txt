@@ -3,7 +3,7 @@ Contributors: StorePro
 Tags: Subscription Renewal emails, Automated Reminders , Subscriptions , Renewal Reminders, subscription reminder emails
 Requires at least: 5.2
 Tested up to: 6.8.3
-Stable tag: 1.4.3
+Stable tag: 1.5.0
 Requires PHP: 7.0
 License: GPL v3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -74,6 +74,16 @@ WooCommerce renewal notices do not include a cancellation option. <strong>Our pl
 WooCommerce’s default reminder system sends only one notice per renewal. <strong>Our plugin lets you send multiple reminders</strong> — for example, 14 days and 3 days before renewal — giving you more opportunities to engage with subscribers and reduce unexpected cancellations.
 
 == Changelog ==
+= 1.5.0 - 2025-12-30 =
+* New: Email Testing tab (Pro) with safe override (`SPRR_TESTING_ENABLED`, `sprr_testing_enabled` filter, or `sprr_testing_enabled` option).
+* New: Help menu with plugin overview, how it works, shortcodes, troubleshooting, and Review/Support buttons.
+* New: Consistent yellow "Upgrade to Pro" buttons across settings for clear CTAs.
+* Improved: Default template preview formatting in Settings; preserves existing HTML and formats plain text properly.
+* Improved: Subject resolution for renewal sends — never empty; supports `{first_name}`, `{last_name}`, `{next_payment_date}` placeholders.
+* Improved: Template Library updates including shortcode usage in free templates and better previews.
+* Change: Moved "Send Renewal Emails Now" from Sync to the new Testing tab.
+* UX: Pro feature gating and overlays; free users limited to one custom template with clear upgrade messaging.
+
 = 1.4.1 - 2025-10-27 =
 * Tested with WooCommerce 10.3.3.
 

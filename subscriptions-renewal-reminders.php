@@ -3,7 +3,7 @@
  * Plugin Name:       Subscriptions Renewal Reminders 
  * Plugin URI:        https://storepro.io/subscription-renewal-premium/
  * Description:       Renewal Reminders for Subscriptions automatically send your subscribers a courtesy reminder via email X days before their subscription renews. Shortcodes to be used for updating the subscriber's First and Last Names are {first_name} and {last_name} respectively.
- * Version:           1.4.3
+ * Version:           1.5.0
  * Author:            StorePro
  * Author URI:        https://storepro.io/
  * Text Domain:       subscriptions-renewal-reminders
@@ -248,6 +248,31 @@ function do_after_update_email_time() {
  
   }
 add_action('update_option_email_time','do_after_update_email_time', 10, 2);
+/**
+ * Admin AJAX: Run renewal sends now (for testing)
+ */
+function sprr_run_renewal_sends_now() {
+    if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'sprr_run_now')) {
+        wp_send_json_error('Security check failed.');
+        return;
+    }
+    if (!current_user_can('manage_options')) {
+        wp_send_json_error('Insufficient permissions.');
+        return;
+    }
+    do_action('renewal_reminders');
+    $history = get_option('sprr_email_history', array());
+    $latest = end($history);
+    if (!$latest || !is_array($latest)) {
+        wp_send_json_success(array('sent' => 0, 'failed' => 0));
+        return;
+    }
+    wp_send_json_success(array(
+        'sent' => isset($latest['sent']) ? intval($latest['sent']) : 0,
+        'failed' => isset($latest['failed']) ? intval($latest['failed']) : 0
+    ));
+}
+add_action('wp_ajax_sprr_run_renewal_sends_now', 'sprr_run_renewal_sends_now');
 
 function dismiss_sp_notice() {
     $dismissed_key = isset($_POST['dismissed_key']) ? sanitize_key($_POST['dismissed_key']) : '';

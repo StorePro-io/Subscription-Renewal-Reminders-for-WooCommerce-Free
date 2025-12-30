@@ -102,7 +102,7 @@ $available_statuses = array(
                 <p style="margin: 0 0 10px 0; color: #666; font-size: 14px;">
                     <?php esc_html_e('Automation rules are a premium feature.', 'subscriptions-renewal-reminders'); ?>
                 </p>
-                <a href="https://storepro.io/subscription-renewal-premium/" target="_blank" class="button button-primary">
+                <a href="https://storepro.io/subscription-renewal-premium/" target="_blank" class="button button-primary sprr-upgrade-btn">
                     <span class="dashicons dashicons-star-filled" style="margin-top: 3px;"></span>
                     <?php esc_html_e('Upgrade to Pro for Automation', 'subscriptions-renewal-reminders'); ?>
                 </a>

@@ -88,6 +88,16 @@ class SPRRSettingsApi
                 array($this, 'sprr_templates_page_callback')
             );
 
+            // Add a submenu for Help
+            add_submenu_page(
+                $page['menu_slug'],
+                esc_html__('Help', 'subscriptions-renewal-reminders'),
+                esc_html__('Help', 'subscriptions-renewal-reminders'),
+                $page['capability'],
+                'sp-renewal-reminders-help',
+                array($this, 'sprr_help_page_callback')
+            );
+
             // Add a submenu for the "Upgrade" section
             add_submenu_page($page['menu_slug'],esc_html__('Upgrade', 'subscriptions-renewal-reminders'),  esc_html__('Upgrade to Pro', 'subscriptions-renewal-reminders'), $page['capability'], 'upgrade', array($this, 'sprr_upgrade_page_callback'));
         }
@@ -110,6 +120,14 @@ class SPRRSettingsApi
     }
 
     /**
+     * Callback function for Help page
+     */
+    public function sprr_help_page_callback()
+    {
+        require SPRR_PLUGIN_DIR . 'templates/renewal-reminders-help.php';
+    }
+
+    /**
      * Callback function to redirect to an external link for the "Upgrade" section.
      */
     public function sprr_upgrade_page_callback()
@@ -124,7 +142,9 @@ class SPRRSettingsApi
      */
     public function admin_menu_styles()
     {
-        $styles = '#toplevel_page_sp-renewal-reminders > ul > li:nth-child(5) > a{background-color: #fbb03b !important; color: #0c3c74 !important; font-weight: 600 !important;}';
+        // Style the "Upgrade to Pro" submenu item by slug, independent of position
+        $styles = '#toplevel_page_sp-renewal-reminders ul li a[href*="page=upgrade"]{background-color:#fbb03b !important;color:#0c3c74 !important;font-weight:600 !important;}
+        #toplevel_page_sp-renewal-reminders ul li a[href*="page=upgrade"]:hover{background-color:#ffc657 !important;color:#0c3c74 !important;}';
 
         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         printf('<style>%s</style>', $styles);
