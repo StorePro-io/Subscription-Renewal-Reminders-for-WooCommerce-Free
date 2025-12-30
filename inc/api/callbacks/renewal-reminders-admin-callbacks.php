@@ -344,7 +344,7 @@ class SPRRAdminCallbacks
 							</option>
 						<?php endforeach; ?>
 					</select>
-					
+
 					<a href="<?php echo admin_url('admin.php?page=sp-renewal-reminders-templates'); ?>" class="button" style="margin-left: 5px;">
 						<?php esc_html_e('Manage Templates', 'subscriptions-renewal-reminders'); ?>
 					</a>
